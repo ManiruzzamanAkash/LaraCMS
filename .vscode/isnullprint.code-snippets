@@ -1,0 +1,10 @@
+{
+	"Print If IS NULL": {
+		"scope": "php,html,javascript",
+		"prefix": "isnl",
+		"body": [
+			"{{ !is_null($1) ? $2 : $3 }}",
+		],
+		"description": "Print If IS NULL"
+	}
+}

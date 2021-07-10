@@ -1,0 +1,306 @@
+/*********************** Global Styles *************************/
+
+body {
+    padding-top: 4.1rem;
+}
+
+.bg-dark {
+    background: #212529!important
+}
+
+.parsley-errors-list {
+    color: #ef0607;
+    list-style: none;
+    text-align: left;
+}
+
+
+/*********************** End Global Styles **********************/
+
+
+/*********************** Header Styles *************************/
+
+.main-header {
+    background: #f6f7fc;
+    padding: 100px;
+    text-align: center;
+}
+
+.img-logo {
+    width: 150px;
+}
+
+.navbar {
+    padding: 0px !important;
+}
+
+li.nav-item {
+    padding: 18px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+li.nav-item:hover {
+    background: #033549;
+    border-bottom: 2px solid #ef0607;
+}
+
+.nav-item .dropdown-menu {
+    background: #1c4374;
+    border-radius: 0px !important;
+    color: #fff;
+    border-top: 0px;
+    padding: 0px;
+}
+
+.dropdown-item {
+    padding: 0.5rem;
+    color: #fff;
+    background-color: transparent;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+    color: #fff;
+    background-color: #023c54;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #023c54;
+}
+
+
+/*********************** End Header Styles *************************/
+
+
+/*********************** Home Page Styles *************************/
+
+.main {
+    padding: 0px 0px;
+}
+
+.category-homepage {
+    padding: 100px 30px;
+}
+
+.category-homepage h2 {
+    font-family: sans-serif;
+    font-weight: 700;
+    padding-bottom: 10px;
+}
+
+.child-category-single h3 {
+    margin-top: -46px;
+    background: #00425d2e !important;
+    z-index: 1000;
+    position: absolute;
+    display: block;
+    padding: 12px;
+    width: 90%;
+    font-size: 1.3rem;
+    border-bottom: 2px solid transparent;
+}
+
+.child-category-single:hover h3 {
+    background: #00425db3 !important;
+    transition: 0.5s;
+    border-bottom: 2px solid #ef0607;
+}
+
+.category-bg1 {
+    background: #00425d;
+    color: #fff;
+}
+
+.category-bg-default {
+    background: #eee;
+    color: #023c54;
+}
+
+.category-bg2 {
+    background: #eee;
+    color: #023c54;
+}
+
+.category-bg3 {}
+
+.category-bg4 {}
+
+.category-bg5 {}
+
+.child-category-single {
+    cursor: pointer;
+    margin-top: 25px !important;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+.child-category-single img {
+    height: 170px;
+    min-width: 255px;
+    transform: scale(.95);
+    transition: .5s;
+}
+
+.child-category-single:hover img {
+    transform: scale(1);
+}
+
+.child-category-single h3 {}
+
+
+/*********************** End Home Page Styles **********************/
+
+
+/*** Category Child 1 Page Styles ***/
+
+.category-child1-details {
+    margin-bottom: 50px;
+}
+
+.category-page .breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: transparent;
+    border-radius: 0px;
+    border-bottom: 2px solid #023c5414;
+    color: #023c54;
+    display: inline-flex;
+}
+
+.category-page .breadcrumb a {
+    color: #023c54;
+}
+
+.category-page .breadcrumb a:hover {
+    color: #ef0607;
+}
+
+.category-child1-details ul {
+    list-style: none;
+}
+
+.category-child1-details ul li {
+    padding: 10px;
+    border-bottom: 1px dashed gray;
+}
+
+.category-child1-details ul a {
+    text-decoration: none;
+}
+
+
+/*** Category Child 1 Page Styles ***/
+
+
+/*********************** Contact Page Styles *************************/
+
+.contact-form {
+    /* background: #023c54;
+    color: #fff; */
+    text-align: center;
+}
+
+.contact-form .form-control {
+    border-radius: 1rem;
+}
+
+.contact-form form {
+    padding: 2% 15% 10% 15%;
+}
+
+.contact-form form .row {
+    margin-bottom: -7%;
+}
+
+.contact-form h3 {
+    margin-bottom: 3%;
+    text-align: center;
+    color: #023c54;
+    font-family: sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.contact-form .btnContact {
+    width: 200px;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #023c54;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btnContactSubmit {
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    color: #fff;
+    background-color: #0062cc;
+    border: none;
+    cursor: pointer;
+}
+
+
+/*********************** End Contact Page Styles **********************/
+
+
+/*********************** Start Footer Styles **********************/
+
+.footer-area {
+    background-color: #033347;
+    padding: 20px;
+}
+
+.footer-top {
+    background: #eee;
+    padding: 100px 50px;
+    border-top: 2px solid #023c541f;
+}
+
+.footer-top ul {
+    list-style: none;
+}
+
+.footer-top a {
+    color: #012635;
+}
+
+.scrollTop {
+    position: fixed;
+    right: 5%;
+    bottom: 5px;
+    background-color: #012635;
+    padding: 15px;
+    padding-top: 10px;
+    width: 45px;
+    height: 42px;
+    transition: all 0.4s ease-in-out 0s;
+    border-radius: 26px 26px 0px 0px;
+    cursor: pointer;
+    color: #FFF;
+    border: 1px solid #fff;
+}
+
+.scrollTop a {
+    font-size: 18px;
+    color: #fff;
+}
+
+
+/*********************** Start Footer Styles **********************/
