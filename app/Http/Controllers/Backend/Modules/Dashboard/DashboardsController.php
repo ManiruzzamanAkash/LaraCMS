@@ -19,7 +19,7 @@ class DashboardsController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::guard('web')->user();
+            $this->user = Auth::guard('admin')->user();
             return $next($request);
         });
     }
@@ -31,10 +31,6 @@ class DashboardsController extends Controller
      */
     public function index()
     {
-        if (is_null($this->user)) {
-            return redirect()->route('admin.login');
-        }
-
         if (is_null($this->user) || !$this->user->can('dashboard.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
