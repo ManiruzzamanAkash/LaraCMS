@@ -1,0 +1,13 @@
+{
+    "name": "ThemeBusiness",
+    "alias": "themebusiness",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ThemeBusiness\\Providers\\ThemeBusinessServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

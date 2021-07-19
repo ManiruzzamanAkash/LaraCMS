@@ -1,0 +1,17 @@
+/* Header CSS */
+
+/* Body Content CSS */
+
+/* Testimonial Section CSS */
+.testimonial.testimonial-style-3.custom-testimonial-style-1 .testimonial-author img {
+    max-width: 60px!important;
+    max-height: 50px!important;
+}
+
+/* Team Section CSS */
+.owl-carousel .owl-item img {
+    width: auto!important;
+    height: 150px;
+}
+
+/* Footer CSS */
