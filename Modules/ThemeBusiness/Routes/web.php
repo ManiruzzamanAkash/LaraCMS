@@ -13,7 +13,7 @@
 
 use Modules\ThemeBusiness\Http\Controllers\FrontPagesController;
 
-Route::group(['prefix' => 'demo/business', 'as' => 'demo.business'], function () { // @todo - Change prefix route name 'as' => 'demo.business.'
+Route::group(['prefix' => 'demo/business', 'as' => 'demo.business.'], function () { // @todo - Change prefix route name 'as' => 'demo.business.'
     Route::get( '/', [ FrontPagesController::class, 'index' ] )->name( 'index' );
     Route::get( '/service', [ FrontPagesController::class, 'service' ] )->name( 'service' );
     Route::get( '/about', [ FrontPagesController::class, 'about' ] )->name( 'about' );
