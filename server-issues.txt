@@ -1,8 +1,0 @@
-## Server Issues
-
-### Add dynamic length for row_size
-ALTER TABLE terms ENGINE=InnoDB ROW_FORMAT=DYNAMIC KEY_BLOCK_SIZE=8
-
-### Nullable url for advertisements:
-ALTER TABLE `advertisements` CHANGE `url` `url` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '';
-

@@ -31,15 +31,6 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_category_id', 'id')->select('id', 'name', 'slug', 'banner_image');
     }
 
-    public static function checkAdvertisementHasCategory($category_id, $advertisement_id)
-    {
-        $exists = DB::table('category_advertisements')
-            ->where('category_id', $category_id)
-            ->where('advertisement_id', $advertisement_id)
-            ->exists();
-        return $exists;
-    }
-
     /**
      * getCategories
      *
@@ -99,11 +90,6 @@ class Category extends Model
             }
         }
         return $html;
-    }
-
-    public function advertisements()
-    {
-        return $this->belongsToMany(Advertisement::class, 'category_advertisements');
     }
 
     public function terms()

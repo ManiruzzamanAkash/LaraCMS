@@ -97,7 +97,7 @@
                 </li>
                 @endif
 
-                @if ($user->can('page.view') || $user->can('page.create') || $user->can('translation.page'))
+                @if ($user->can('page.view') || $user->can('page.create'))
                 <li class="sidebar-item ">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-tag-text-outline"></i>
@@ -118,118 +118,6 @@
                             <a href="{{ route('admin.pages.create') }}" class="sidebar-link {{ Route::is('admin.pages.create') ? 'active' : null }}">
                                 <i class="mdi mdi-plus-circle"></i>
                                 <span class="hide-menu"> New Article/Page </span>
-                            </a>
-                        </li>
-                        @endif
-
-                        @if ($user->can('translation.page'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.pages.translation.create') }}" class="sidebar-link {{ Route::is('admin.pages.translation.create') ? 'active' : null }}">
-                                <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> Article/Page Translation </span>
-                            </a>
-                        </li>
-                        @endif
-                    </ul>
-                </li>
-                @endif
-
-                @if ($user->can('word.view') || $user->can('word.create'))
-                <li class="sidebar-item ">
-                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i class="mdi mdi-view-list"></i>
-                        <span class="hide-menu">Words </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.words.index') || Route::is('admin.words.create') || Route::is('admin.words.edit')) ? 'in' : null }}">
-                        @if ($user->can('word.view'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.words.index') }}" class="sidebar-link {{ (Route::is('admin.words.index') || Route::is('admin.words.edit')) ? 'active' : null }}">
-                                <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> Word List </span>
-                            </a>
-                        </li>
-                        @endif
-
-                        @if ($user->can('word.create'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.words.create') }}" class="sidebar-link {{ Route::is('admin.words.create') ? 'active' : null }}">
-                                <i class="mdi mdi-plus-circle"></i>
-                                <span class="hide-menu"> New Word </span>
-                            </a>
-                        </li>
-                        @endif
-                    </ul>
-                </li>
-                @endif
-
-                @if ($user->can('sentence.view') || $user->can('sentence.create'))
-                <li class="sidebar-item ">
-                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i class="mdi mdi-widgets"></i>
-                        <span class="hide-menu">Sentences </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.sentences.index') || Route::is('admin.sentences.create') || Route::is('admin.sentences.edit')) ? 'in' : null }}">
-                        @if ($user->can('sentence.view'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.sentences.index') }}" class="sidebar-link {{ (Route::is('admin.sentences.index') || Route::is('admin.sentences.edit')) ? 'active' : null }}">
-                                <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> Sentence List </span>
-                            </a>
-                        </li>
-                        @endif
-
-                        @if ($user->can('sentence.create'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.sentences.create') }}" class="sidebar-link {{ Route::is('admin.sentences.create') ? 'active' : null }}">
-                                <i class="mdi mdi-plus-circle"></i>
-                                <span class="hide-menu"> New Sentence </span>
-                            </a>
-                        </li>
-                        @endif
-                    </ul>
-                </li>
-                @endif
-
-                @if ($user->can('translation.create') || $user->can('translation.edit'))
-                <li class="sidebar-item ">
-                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i class="mdi mdi-view-list"></i>
-                        <span class="hide-menu">Translation </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.translations.create') || Route::is('admin.words.create') || Route::is('admin.words.edit')) ? 'in' : null }}">
-                        @if ($user->can('translation.create'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.translations.create') }}" class="sidebar-link {{ (Route::is('admin.translations.create') || Route::is('admin.words.edit')) ? 'active' : null }}">
-                                <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> New Translation </span>
-                            </a>
-                        </li>
-                        @endif
-                    </ul>
-                </li>
-                @endif
-
-                @if ($user->can('advertisement.view') || $user->can('advertisement.create'))
-                <li class="sidebar-item ">
-                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i class="mdi mdi-coin"></i>
-                        <span class="hide-menu">Advertisements </span>
-                    </a>
-                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.advertisements.index') || Route::is('admin.advertisements.create') || Route::is('admin.advertisements.edit')) ? 'in' : null }}">
-                        @if ($user->can('advertisement.view'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.advertisements.index') }}" class="sidebar-link {{ (Route::is('admin.advertisements.index') || Route::is('admin.advertisements.edit')) ? 'active' : null }}">
-                                <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> Advertisement List </span>
-                            </a>
-                        </li>
-                        @endif
-
-                        @if ($user->can('advertisement.create'))
-                        <li class="sidebar-item">
-                            <a href="{{ route('admin.advertisements.create') }}" class="sidebar-link {{ Route::is('admin.advertisements.create') ? 'active' : null }}">
-                                <i class="mdi mdi-plus-circle"></i>
-                                <span class="hide-menu"> New Advertisement </span>
                             </a>
                         </li>
                         @endif
@@ -291,7 +179,6 @@
                 </li> --}}
 
 
-                <!-- @if ($user->can('translation.create') || $user->can('translation.edit')) -->
                 <li class="sidebar-item ">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-settings"></i>
@@ -304,17 +191,8 @@
                                 <span class="hide-menu"> Languages </span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            @if ($user->can('language.connections'))
-                                <a href="{{ route('admin.languages.connection.index') }}" class="sidebar-link {{ (Route::is('admin.languages.connection.index')) ? 'active' : '' }}">
-                                    <i class="mdi mdi-sync"></i>
-                                    <span class="hide-menu"> Language Connections </span>
-                                </a>
-                            @endif
-                        </li>
                     </ul>
                 </li>
-                <!-- @endif -->
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('admin.logout') }}"  onclick="event.preventDefault();

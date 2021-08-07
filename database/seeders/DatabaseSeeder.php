@@ -20,8 +20,7 @@ class DatabaseSeeder extends Seeder
             PageTableSeeder::class,
             BlogTableSeeder::class,
             CountryTableSeeder::class,
-            LanguageTableSeeder::class,
-            AdvertisementTypeTableSeeder::class
+            LanguageTableSeeder::class
         ]);
     }
 }

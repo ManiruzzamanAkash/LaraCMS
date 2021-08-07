@@ -208,7 +208,7 @@ class BlogsController extends Controller
             $blog->description = $request->description;
             $blog->meta_description = $request->meta_description;
             $blog->created_at = Carbon::now();
-            $blog->created_by = Auth::guard('web')->id();
+            $blog->created_by = Auth::guard('admin')->id();
             $blog->updated_at = Carbon::now();
             $blog->save();
 
@@ -293,7 +293,7 @@ class BlogsController extends Controller
             $blog->status = $request->status;
             $blog->description = $request->description;
             $blog->meta_description = $request->meta_description;
-            $blog->updated_by = Auth::guard('web')->id();
+            $blog->updated_by = Auth::guard('admin')->id();
             $blog->updated_at = Carbon::now();
             $blog->save();
 
@@ -327,7 +327,7 @@ class BlogsController extends Controller
             return redirect()->route('admin.blogs.trashed');
         }
         $blog->deleted_at = Carbon::now();
-        $blog->deleted_by = Auth::guard('web')->id();
+        $blog->deleted_by = Auth::guard('admin')->id();
         $blog->status = 0;
         $blog->save();
 

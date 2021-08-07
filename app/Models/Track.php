@@ -28,7 +28,7 @@ class Track extends Model
         $track = new Track();
         $track->title = $title;
         $track->description = $description;
-        $track->admin_id = Auth::guard('web')->id();
+        $track->admin_id = Auth::id();
         $track->save();
     }
 }

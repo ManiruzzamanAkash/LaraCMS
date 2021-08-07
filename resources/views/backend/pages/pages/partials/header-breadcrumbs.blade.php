@@ -11,8 +11,6 @@
                 @elseif(Route::is('admin.pages.show'))
                     View Article/Page <span class="badge badge-info">{{ $page->title }}</span>
                     <a  class="btn btn-outline-success btn-sm" href="{{ route('admin.pages.edit', $page->id) }}"> <i class="fa fa-edit"></i></a>
-                @elseif(Route::is('admin.pages.translation.create'))
-                    Page/Article/Page Translations
                 @endif
             </h4>
         </div>
@@ -32,9 +30,6 @@
                         @elseif(Route::is('admin.pages.show'))
                         <li class="breadcrumb-item"><a href="{{ route('admin.pages.index') }}">Article/Page List</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Show Article/Page</li>
-                        @elseif(Route::is('admin.pages.translation.create'))
-                        <li class="breadcrumb-item"><a href="{{ route('admin.pages.index') }}">Article/Pages/Pages</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Create Translation</li>
                         @endif
 
                     </ol>

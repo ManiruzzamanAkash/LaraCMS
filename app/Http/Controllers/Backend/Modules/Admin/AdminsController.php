@@ -220,7 +220,7 @@ class AdminsController extends Controller
             $admin->password = Hash::make($request->password);
             $admin->status = $request->status;
             $admin->created_at = Carbon::now();
-            $admin->created_by = Auth::guard('web')->id();
+            $admin->created_by = Auth::guard('admin')->id();
             $admin->updated_at = Carbon::now();
             $admin->save();
 
@@ -282,7 +282,7 @@ class AdminsController extends Controller
             return view('errors.403', compact('message'));
         }
 
-        $id = Auth::guard('web')->id();
+        $id = Auth::guard('admin')->id();
         return $this->edit($id, true);
     }
 
@@ -370,7 +370,7 @@ class AdminsController extends Controller
             return view('errors.403', compact('message'));
         }
 
-        $id = Auth::guard('web')->id();
+        $id = Auth::guard('admin')->id();
         return $this->update($request, $id, true);
     }
 
@@ -393,7 +393,7 @@ class AdminsController extends Controller
             return redirect()->route('admin.admins.trashed');
         }
         $admin->deleted_at = Carbon::now();
-        $admin->deleted_by = Auth::guard('web')->id();
+        $admin->deleted_by = Auth::guard('admin')->id();
         $admin->status = 0;
         $admin->save();
 

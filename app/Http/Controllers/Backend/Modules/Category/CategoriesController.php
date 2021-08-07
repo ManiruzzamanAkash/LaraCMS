@@ -235,7 +235,7 @@ class CategoriesController extends Controller
             $category->meta_description = $request->meta_description;
             $category->priority = $request->priority ? $request->priority : 1;
             $category->created_at = Carbon::now();
-            $category->created_by = Auth::guard('web')->id();
+            $category->created_by = Auth::guard('admin')->id();
             $category->updated_at = Carbon::now();
             $category->save();
 
@@ -351,7 +351,7 @@ class CategoriesController extends Controller
             $category->description = $request->description;
             $category->meta_description = $request->meta_description;
             $category->priority = $request->priority;
-            $category->updated_by = Auth::guard('web')->id();
+            $category->updated_by = Auth::guard('admin')->id();
             $category->updated_at = Carbon::now();
             $category->save();
 
@@ -407,7 +407,7 @@ class CategoriesController extends Controller
             return redirect()->route('admin.categories.trashed');
         }
         $category->deleted_at = Carbon::now();
-        $category->deleted_by = Auth::guard('web')->id();
+        $category->deleted_by = Auth::guard('admin')->id();
         $category->status = 0;
         $category->save();
 

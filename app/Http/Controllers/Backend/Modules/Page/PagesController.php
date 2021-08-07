@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend\Modules\Page;
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
-use App\Models\Advertisement;
 use App\Models\ArticleType;
 use App\Models\Category;
 use App\Models\Language;
@@ -188,8 +187,7 @@ class PagesController extends Controller
     {
         $categories = Category::printCategory(null, 3);
         $article_types = ArticleType::all();
-        $advertisements = Advertisement::select('id', 'title', 'url')->get();
-        return view('backend.pages.pages.create', compact('categories', 'article_types', 'advertisements'));
+        return view('backend.pages.pages.create', compact('categories', 'article_types'));
     }
 
     /**
@@ -231,16 +229,13 @@ class PagesController extends Controller
 
             $page->category_id = $request->category_id;
             $page->article_type_id = $request->article_type_id;
-            $page->advertisement_ids = $request->advertisement_ids;
             $page->status = $request->status;
             $page->description = $request->description;
             $page->meta_description = $request->meta_description;
             $page->created_at = Carbon::now();
-            $page->created_by = Auth::guard('web')->id();
+            $page->created_by = Auth::guard('admin')->id();
             $page->updated_at = Carbon::now();
             $page->save();
-
-            $this->storeTranslationTermData($page);
 
             Track::newTrack($page->title, 'New Page has been created');
             DB::commit();
@@ -251,103 +246,6 @@ class PagesController extends Controller
             DB::rollBack();
             return back();
         }
-    }
-
-    /**
-     * Store Translation Data for Page/Article
-     *
-     * @param Page $page
-     *
-     * @return void
-     */
-    public function storeTranslationTermData(Page $page)
-    {
-        try {
-            $post_data_title = [
-                'en'       => $page->title,
-                'key'      => 'pt' . $page->id,
-                'content'  => 1,
-                'page_id'  => $page->id
-            ];
-            TermRepository::insert_term_after_model_create($post_data_title);
-
-            $post_data_description = [
-                'en'       => $page->description,
-                'key'      => 'pd' . $page->id,
-                'content'  => 1,
-                'page_id'  => $page->id
-            ];
-            TermRepository::insert_term_after_model_create($post_data_description);
-
-            $post_data_meta_description = [
-                'en'       => $page->meta_description,
-                'key'      => 'pmd' . $page->id,
-                'content'  => 1,
-                'page_id'  => $page->id
-            ];
-            TermRepository::insert_term_after_model_create($post_data_meta_description);
-        } catch (\Exception $e) {
-
-        }
-    }
-
-
-    /**
-     * Translation Create Page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createTranslation()
-    {
-        if (is_null($this->user) || !$this->user->can('translation.page')) {
-            return abort(403, 'You are not allowed to access this page !');
-        }
-
-        $categories = Category::printCategory(null, 3);
-        $pages      = Page::select('id', 'title', 'slug')->get();
-
-        return view('backend.pages.pages.translation', compact('categories', 'pages'));
-    }
-
-
-    /**
-     * Translation Store for page/article/blog
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function storeTranslation(Request $request)
-    {
-        if (is_null($this->user) || !$this->user->can('translation.page')) {
-            return abort(403, 'You are not allowed to access this page !');
-        }
-
-        $request->validate([
-            'id'               => 'required',
-            'language_id'      => 'required',
-            'title'            => 'nullable|string',
-            'description'      => 'nullable|string',
-            'meta_description' => 'nullable|string',
-        ]);
-
-        $id          = $request->id;
-        $language_id = $request->language_id;
-
-        $page     = Page::find($id);
-        $language = Language::find($language_id);
-
-        if (!is_null($page) && !is_null($language)) {
-            $code = $language->code;
-            TermRepository::update_term_by_key('key', 'pt' . $id, $code, $request->title);
-            TermRepository::update_term_by_key('key', 'pd' . $id, $code, $request->description);
-            TermRepository::update_term_by_key('key', 'pmd' . $id, $code, $request->meta_description);
-
-            Track::newTrack($page->title, 'Translation has been updated.');
-            DB::commit();
-            session()->flash('success', 'Page translation has been updated successfully !!');
-        } else {
-            session()->flash('error', 'Page not found !!');
-        }
-        return back();
     }
 
     /**
@@ -382,8 +280,7 @@ class PagesController extends Controller
         $page = Page::find($id);
         $categories = Category::printCategory($page->category_id);
         $article_types = ArticleType::all();
-        $advertisements = Advertisement::select('id', 'title', 'url')->get();
-        return view('backend.pages.pages.edit', compact('categories', 'advertisements', 'page', 'article_types'));
+        return view('backend.pages.pages.edit', compact('categories', 'page', 'article_types'));
     }
 
     /**
@@ -426,15 +323,12 @@ class PagesController extends Controller
 
             $page->category_id = $request->category_id;
             $page->article_type_id = $request->article_type_id;
-            $page->advertisement_ids = $request->advertisement_ids;
             $page->status = $request->status;
             $page->description = $request->description;
             $page->meta_description = $request->meta_description;
-            $page->updated_by = Auth::guard('web')->id();
+            $page->updated_by = Auth::guard('admin')->id();
             $page->updated_at = Carbon::now();
             $page->save();
-
-            $this->storeTranslationTermData($page);
 
             Track::newTrack($page->title, 'Page has been updated successfully !!');
             DB::commit();
@@ -466,7 +360,7 @@ class PagesController extends Controller
             return redirect()->route('admin.pages.trashed');
         }
         $page->deleted_at = Carbon::now();
-        $page->deleted_by = Auth::guard('web')->id();
+        $page->deleted_by = Auth::guard('admin')->id();
         $page->status = 0;
         $page->save();
 

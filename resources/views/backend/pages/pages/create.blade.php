@@ -71,22 +71,6 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label" for="advertisement_ids">Advertisement <span
-                                            class="optional">(optional)</span></label>
-                                    <br>
-                                    <select class="form-control custom-select select2" id="types" name="advertisement_ids[]"
-                                        style="width: 100%;" multiple>
-                                        <option value="">Select</option>
-                                        @foreach ($advertisements as $advertisement)
-                                            <option value="{{ $advertisement->id }}">
-                                                {{ $advertisement->title }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="row ">

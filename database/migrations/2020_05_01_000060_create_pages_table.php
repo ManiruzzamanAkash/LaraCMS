@@ -27,7 +27,6 @@ class CreatePagesTable extends Migration
             $table->unsignedBigInteger('article_type_id')
                 ->nullable()
                 ->comment('If Article Belongs to a Type');
-            $table->json('advertisement_ids')->nullable();
             $table->boolean('status')->default(1)->comment('1=>active, 0=>inactive');
             $table->softDeletes('deleted_at', 0);
 

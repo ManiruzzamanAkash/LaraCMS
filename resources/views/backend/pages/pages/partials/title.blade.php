@@ -6,8 +6,6 @@ Create New Article/Page
 Edit Article/Page - {{ $page->title }}
 @elseif(Route::is('admin.pages.show'))
 View Article/Page - {{ $page->title }}
-@elseif(Route::is('admin.pages.translation.create'))
-Page/Article/Page Translation
 @endif
 | Admin Panel -
 {{ config('app.name') }}

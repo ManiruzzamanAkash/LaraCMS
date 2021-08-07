@@ -36,33 +36,6 @@ class LanguageRepository
         return $data;
     }
 
-    /**
-     * Get Preferred Languages List
-     *
-     * @param int $language_id
-     *
-     * @return array
-     */
-    public function get_preferred_languages($language_id)
-    {
-        $query = DB::table('language_preferreds')
-            ->join('languages', 'languages.id', '=', 'language_preferreds.preferred_language_id')
-            ->select(
-                'languages.id',
-                'languages.name',
-                'languages.code',
-                DB::raw('UPPER(languages.code) as code_upper_case'),
-                'languages.country',
-                DB::raw('CONCAT("' . asset('public/img/flags/') . '/", languages.flag) AS flag')
-            )
-            ->where('language_preferreds.language_id', $language_id)
-            ->orderBy('languages.name', 'asc');
-
-        $data = $query->get();
-
-        return $data;
-    }
-
 
     /**
      * Get Language Detail By ID/Code/ Other SQL table's column
