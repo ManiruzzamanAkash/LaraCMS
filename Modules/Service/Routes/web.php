@@ -10,7 +10,3 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('service')->group(function() {
-    Route::get('/', 'ServiceController@index');
-});
