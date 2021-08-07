@@ -16,6 +16,6 @@ class ServiceDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $this->call(ServiceTableSeeder::class);
     }
 }

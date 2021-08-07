@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Article\Database\Seeders\ArticleDatabaseSeeder;
+use Modules\Service\Database\Seeders\ServiceDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,7 +23,10 @@ class DatabaseSeeder extends Seeder
             LanguageTableSeeder::class,
 
             // Seed Databases of Article Module
-            ArticleDatabaseSeeder::class
+            ArticleDatabaseSeeder::class,
+
+            // Seed Databases of Service Module
+            ServiceDatabaseSeeder::class,
         ]);
     }
 }
