@@ -12,12 +12,8 @@ use App\Http\Controllers\Backend\Modules\Category\CategoriesController;
 use App\Http\Controllers\Backend\Modules\Blog\BlogsController;
 use App\Http\Controllers\Backend\Modules\Contact\ContactsControllerBackend;
 use App\Http\Controllers\Backend\Modules\Page\PagesController;
-use App\Http\Controllers\Backend\Modules\Word\WordsController;
-use App\Http\Controllers\Backend\Modules\Sentence\SentencesController;
 use App\Http\Controllers\Backend\Modules\Settings\CacheController;
-use App\Http\Controllers\Backend\Modules\Settings\LanguageConnectionsController;
 use App\Http\Controllers\Backend\Modules\Settings\LanguagesController;
-use App\Http\Controllers\Backend\Modules\Translation\TranslationsController;
 use App\Http\Controllers\Frontend\FrontPagesController;
 
 /*
@@ -98,26 +94,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     });
 
     /**
-     * Word Management Routes
-     */
-    Route::group(['prefix' => ''], function () {
-        Route::resource('words', WordsController::class);
-        Route::get('words/trashed/view', [WordsController::class, 'trashed'])->name('words.trashed');
-        Route::delete('words/trashed/destroy/{id}', [WordsController::class, 'destroyTrash'])->name('words.trashed.destroy');
-        Route::put('words/trashed/revert/{id}', [WordsController::class, 'revertFromTrash'])->name('words.trashed.revert');
-    });
-
-    /**
-     * Sentence Management Routes
-     */
-    Route::group(['prefix' => ''], function () {
-        Route::resource('sentences', SentencesController::class);
-        Route::get('sentences/trashed/view', [SentencesController::class, 'trashed'])->name('sentences.trashed');
-        Route::delete('sentences/trashed/destroy/{id}', [SentencesController::class, 'destroyTrash'])->name('sentences.trashed.destroy');
-        Route::put('sentences/trashed/revert/{id}', [SentencesController::class, 'revertFromTrash'])->name('sentences.trashed.revert');
-    });
-
-    /**
      * Blog Management Routes
      */
     Route::group(['prefix' => ''], function () {
@@ -145,25 +121,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::resource('contacts', ContactsControllerBackend::class);
     });
 
-
-    /**
-     * Translation Management Routes
-     */
-    Route::group(['prefix' => 'translations'], function () {
-        Route::get('create', [TranslationsController::class, 'create'])->name('translations.create');
-        Route::post('store', [TranslationsController::class, 'store'])->name('translations.store');
-    });
-
     /**
      * Settings Management Routes
      */
     Route::group(['prefix' => 'settings'], function () {
         Route::resource('languages', LanguagesController::class);
-
-        Route::group(['prefix' => 'language'], function () {
-            Route::get('connections', [LanguageConnectionsController::class, 'index'])->name('languages.connection.index');
-            Route::put('connections/update', [LanguageConnectionsController::class, 'update'])->name('languages.connection.update');
-        });
     });
 
 });
