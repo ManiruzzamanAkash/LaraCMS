@@ -9,12 +9,10 @@ use stdClass;
 
 class StringHelper
 {
-
-
     //For Generating Unique Slug
-    public static function createSlug($title, $model, $field, $separator = "-")
+    public static function createSlug($title, $model, $field, $separator = "-", $isModule = false)
     {
-        $model = 'App\Models\\' . $model;
+        $model = ! $isModule ? 'App\Models\\' . $model : $model;
         $id = 0;
 
         $slug =  preg_replace('/\s+/', $separator, (trim(strtolower($title))));
