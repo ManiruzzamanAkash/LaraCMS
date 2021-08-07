@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace Modules\Article\Entities;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
@@ -90,10 +89,5 @@ class Category extends Model
             }
         }
         return $html;
-    }
-
-    public function terms()
-    {
-        return $this->hasMany(Term::class, 'id', 'catetegory');
     }
 }

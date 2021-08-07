@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    @include('backend.pages.categories.partials.title')
+    @include('article::categories.partials.title')
 @endsection
 
 @section('styles')
@@ -9,7 +9,7 @@
 @endsection
 
 @section('admin-content')
-    @include('backend.pages.categories.partials.header-breadcrumbs')
+    @include('article::categories.partials.header-breadcrumbs')
     <div class="container-fluid">
         @include('backend.layouts.partials.messages')
         <div class="create-page">
@@ -135,5 +135,5 @@
 @endsection
 
 @section('scripts')
-@include('backend.pages.categories.partials.scripts')
+@include('article::categories.partials.scripts')
 @endsection

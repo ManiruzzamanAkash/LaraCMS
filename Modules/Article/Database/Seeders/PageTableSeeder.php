@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Seeders;
+namespace Modules\Article\Database\Seeders;
 
-use App\Models\Page;
+use Modules\Article\Entities\Page;
 use Illuminate\Database\Seeder;
 
 class PageTableSeeder extends Seeder

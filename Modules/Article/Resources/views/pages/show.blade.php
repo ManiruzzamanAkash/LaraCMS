@@ -1,11 +1,11 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    @include('backend.pages.pages.partials.title')
+    @include('article::pages.partials.title')
 @endsection
 
 @section('admin-content')
-    @include('backend.pages.pages.partials.header-breadcrumbs')
+    @include('article::pages.partials.header-breadcrumbs')
     <div class="container-fluid">
         @include('backend.layouts.partials.messages')
         <div class="create-page">

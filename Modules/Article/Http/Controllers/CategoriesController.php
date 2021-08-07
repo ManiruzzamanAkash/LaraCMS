@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Category;
+namespace Modules\Article\Http\Controllers;
 
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
 use App\Models\Track;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use Modules\Article\Entities\Category;
 use App\Models\Term;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -170,7 +170,7 @@ class CategoriesController extends Controller
         $count_categories = count(Category::select('id')->get());
         $count_active_categories = count(Category::select('id')->where('status', 1)->get());
         $count_trashed_categories = count(Category::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.categories.index', compact('count_categories', 'count_active_categories', 'count_trashed_categories'));
+        return view('article::categories.index', compact('count_categories', 'count_active_categories', 'count_trashed_categories'));
     }
 
     /**
@@ -181,7 +181,7 @@ class CategoriesController extends Controller
     public function create()
     {
         $categories = Category::printCategory(null, $layer = 2);
-        return view('backend.pages.categories.create', compact('categories'));
+        return view('article::categories.create', compact('categories'));
     }
 
     /**
@@ -210,7 +210,7 @@ class CategoriesController extends Controller
             if ($request->slug) {
                 $category->slug = $request->slug;
             } else {
-                $category->slug = StringHelper::createSlug($request->name, 'Category', 'slug', '');
+                $category->slug = StringHelper::createSlug($request->name, 'Modules\Article\Entities\Category', 'slug', '-', true);
             }
 
             if (!is_null($request->banner_image)) {
@@ -295,7 +295,7 @@ class CategoriesController extends Controller
         $category   = Category::find($id);
         $categories = Category::printCategory($category->parent_category_id, $layer = 2);
 
-        return view('backend.pages.categories.edit', compact('categories', 'category'));
+        return view('article::categories.edit', compact('categories', 'category'));
     }
 
     /**
@@ -457,9 +457,6 @@ class CategoriesController extends Controller
         // Remove Images
         UploadHelper::deleteFile('public/assets/images/categorys/' . $category->banner_image);
         UploadHelper::deleteFile('public/assets/images/categorys/' . $category->image);
-
-        // Delete terms data
-        Term::where('category', $category->id)->delete();
 
         // Delete Category permanently
         $category->delete();

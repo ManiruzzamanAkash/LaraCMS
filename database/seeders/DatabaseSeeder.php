@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Modules\Article\Database\Seeders\ArticleDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,11 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RolePermissionsTableSeeder::class,
             AdminTableSeeder::class,
-            CategoryTableSeeder::class,
-            PageTableSeeder::class,
             BlogTableSeeder::class,
             CountryTableSeeder::class,
-            LanguageTableSeeder::class
+            LanguageTableSeeder::class,
+
+            // Seed Databases of Article Module
+            ArticleDatabaseSeeder::class
         ]);
     }
 }

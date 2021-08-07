@@ -6,6 +6,8 @@ Create New Article/Page
 Edit Article/Page - {{ $page->title }}
 @elseif(Route::is('admin.pages.show'))
 View Article/Page - {{ $page->title }}
+@elseif(Route::is('admin.pages.trashed'))
+Trashed Article/Page
 @endif
 | Admin Panel -
 {{ config('app.name') }}

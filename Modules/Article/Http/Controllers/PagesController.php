@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Page;
+namespace Modules\Article\Http\Controllers;
 
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
-use App\Models\ArticleType;
-use App\Models\Category;
-use App\Models\Language;
+use Modules\Article\Entities\ArticleType;
+use Modules\Article\Entities\Category;
 use App\Models\Track;
 use Illuminate\Http\Request;
-use App\Models\Page;
+use Modules\Article\Entities\Page;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +17,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PagesController extends Controller
 {
-
     public $user;
 
     public function __construct()
@@ -174,7 +172,7 @@ class PagesController extends Controller
         $count_pages = count(Page::select('id')->get());
         $count_active_pages = count(Page::select('id')->where('status', 1)->get());
         $count_trashed_pages = count(Page::select('id')->where('deleted_at', '!=', null)->get());
-        return view('backend.pages.pages.index', compact('count_pages', 'count_active_pages', 'count_trashed_pages'));
+        return view('article::pages.index', compact('count_pages', 'count_active_pages', 'count_trashed_pages'));
     }
 
     /**
@@ -186,7 +184,7 @@ class PagesController extends Controller
     {
         $categories = Category::printCategory(null, 3);
         $article_types = ArticleType::all();
-        return view('backend.pages.pages.create', compact('categories', 'article_types'));
+        return view('article::pages.create', compact('categories', 'article_types'));
     }
 
     /**
@@ -215,7 +213,7 @@ class PagesController extends Controller
             if ($request->slug) {
                 $page->slug = $request->slug;
             } else {
-                $page->slug = StringHelper::createSlug($request->title, 'Page', 'slug', '-');
+                $page->slug = StringHelper::createSlug($request->title, 'Modules\Article\Entities\Page', 'slug', '-', true);
             }
 
             if (!is_null($request->banner_image)) {
@@ -261,7 +259,7 @@ class PagesController extends Controller
         }
         $page = Page::find($id);
         $categories = DB::table('categories')->select('id', 'name')->get();
-        return view('backend.pages.pages.show', compact('categories', 'page'));
+        return view('article::pages.show', compact('categories', 'page'));
     }
 
     /**
@@ -279,7 +277,7 @@ class PagesController extends Controller
         $page = Page::find($id);
         $categories = Category::printCategory($page->category_id);
         $article_types = ArticleType::all();
-        return view('backend.pages.pages.edit', compact('categories', 'page', 'article_types'));
+        return view('article::pages.edit', compact('categories', 'page', 'article_types'));
     }
 
     /**
