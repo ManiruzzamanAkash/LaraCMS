@@ -5,7 +5,6 @@ use App\Http\Controllers\Backend\Modules\Dashboard\DashboardsController;
 use App\Http\Controllers\Backend\Auth\LoginController;
 use App\Http\Controllers\Backend\Auth\ResetPasswordController;
 use App\Http\Controllers\Backend\Auth\ForgotPasswordController;
-use App\Http\Controllers\Backend\Modules\Advertisement\AdvertisementsController;
 use App\Http\Controllers\Backend\Modules\Admin\AdminsController;
 use App\Http\Controllers\Backend\Modules\Admin\RolesController;
 use App\Http\Controllers\Backend\Modules\Category\CategoriesController;
@@ -86,8 +85,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
      */
     Route::group(['prefix' => ''], function () {
         Route::resource('pages', PagesController::class);
-        Route::get('pages/translation/create', [PagesController::class, 'createTranslation'])->name('pages.translation.create');
-        Route::post('pages/translation/store', [PagesController::class, 'storeTranslation'])->name('pages.translation.store');
         Route::get('pages/trashed/view', [PagesController::class, 'trashed'])->name('pages.trashed');
         Route::delete('pages/trashed/destroy/{id}', [PagesController::class, 'destroyTrash'])->name('pages.trashed.destroy');
         Route::put('pages/trashed/revert/{id}', [PagesController::class, 'revertFromTrash'])->name('pages.trashed.revert');
@@ -103,19 +100,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::put('blogs/trashed/revert/{id}', [BlogsController::class, 'revertFromTrash'])->name('blogs.trashed.revert');
     });
 
-     /**
-     * Advertisement Management Routes
-     */
-    Route::group(['prefix' => ''], function () {
-        Route::resource('advertisements', AdvertisementsController::class);
-        Route::get('advertisements/trashed/view', [AdvertisementsController::class, 'trashed'])->name('advertisements.trashed');
-        Route::delete('advertisements/trashed/destroy/{id}', [AdvertisementsController::class, 'destroyTrash'])->name('advertisements.trashed.destroy');
-        Route::put('advertisements/trashed/revert/{id}', [AdvertisementsController::class, 'revertFromTrash'])->name('advertisements.trashed.revert');
-    });
-
-
-     /**
-     * Advertisement Management Routes
+    /**
+     * Contact Routes
      */
     Route::group(['prefix' => ''], function () {
         Route::resource('contacts', ContactsControllerBackend::class);
