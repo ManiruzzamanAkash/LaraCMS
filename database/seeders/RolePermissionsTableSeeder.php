@@ -81,6 +81,13 @@ class RolePermissionsTableSeeder extends Seeder
                 'page.delete',
             ],
 
+            'service' => [
+                'service.view',
+                'service.create',
+                'service.edit',
+                'service.delete',
+            ],
+
             'blog' => [
                 'blog.view',
                 'blog.create',
