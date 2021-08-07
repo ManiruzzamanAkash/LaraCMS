@@ -6,7 +6,7 @@
                 <div class="header-column">
                     <div class="header-row">
                         <div class="header-logo" style="width: 123px; height: 33px;">
-                            <a href="{{ route('index') }}">
+                            <a href="{{ route('demo.business.index') }}">
                                 <img src="{{ asset('public/modules/theme-business/images/common/logo.png') }}" class="img-fluid" alt="" style="top: 0px; height: 90px;">
                             </a>
                         </div>
@@ -18,13 +18,13 @@
                             <div class="header-nav-main header-nav-main-text-capitalize header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
                                     <ul class="nav nav-pills" id="mainNav">
-                                        <li><a href="{{ route('index') }}" class="nav-link active current-page-active">Home</a></li>
-                                        <li><a href="{{ route('about') }}" class="nav-link">About</a></li>
-                                        <li><a href="{{ route('service') }}" class="nav-link">Services</a></li>
-                                        <!-- <li><a href="{{ route('portfolio') }}" class="nav-link">Portfolio</a></li> -->
-                                        <li><a href="{{ route('price') }}" class="nav-link">Prices</a></li>
-                                        <!-- <li><a href="{{ route('blog') }}" class="nav-link">Blog</a></li> -->
-                                        <li><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
+                                        <li><a href="{{ route('demo.business.index') }}" class="nav-link {{ Route::is('demo.business.index') ? 'active current-page-active' : '' }}">Home</a></li>
+                                        <li><a href="{{ route('demo.business.about') }}" class="nav-link {{ Route::is('demo.business.about') ? 'active current-page-active' : '' }}">About</a></li>
+                                        <li><a href="{{ route('demo.business.service') }}" class="nav-link {{ Route::is('demo.business.service') ? 'active current-page-active' : '' }}">Services</a></li>
+                                        <!-- <li><a href="{{ route('demo.business.portfolio') }}" class="nav-link">Portfolio</a></li> -->
+                                        <li><a href="{{ route('demo.business.price') }}" class="nav-link {{ Route::is('demo.business.prices') ? 'active current-page-active' : '' }}">Prices</a></li>
+                                        <!-- <li><a href="{{ route('demo.business.blog') }}" class="nav-link">Blog</a></li> -->
+                                        <li><a href="{{ route('demo.business.contact') }}" class="nav-link {{ Route::is('demo.business.contact') ? 'active current-page-active' : '' }}">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>

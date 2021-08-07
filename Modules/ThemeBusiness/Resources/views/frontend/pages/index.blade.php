@@ -176,11 +176,11 @@
                     </div>
                     <div class="col-lg-5 col-xl-4">
                         <div class="d-flex justify-content-lg-end">
-                            <a href="/-services.html"
+                            <a href="{{ route('demo.business.service') }}"
                                 class="btn btn-primary btn-modern font-weight-bold text-3 btn-px-4 py-3 appear-animation animated fadeInLeftShorter appear-animation-visible"
                                 data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800"
                                 style="animation-delay: 1800ms;">VIEW ALL SERVICES</a>
-                            <a href="/-contact.html"
+                            <a href=""
                                 class="btn btn-secondary btn-modern font-weight-bold text-3 btn-px-4 py-3 ms-4 appear-animation animated fadeInLeftShorter appear-animation-visible"
                                 data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1600"
                                 style="animation-delay: 1600ms;">BOOK NOW</a>
