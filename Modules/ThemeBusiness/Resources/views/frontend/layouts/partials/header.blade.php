@@ -21,9 +21,9 @@
                                         <li><a href="{{ route('index') }}" class="nav-link active current-page-active">Home</a></li>
                                         <li><a href="{{ route('about') }}" class="nav-link">About</a></li>
                                         <li><a href="{{ route('service') }}" class="nav-link">Services</a></li>
-                                        <li><a href="{{ route('portfolio') }}" class="nav-link">Portfolio</a></li>
+                                        <!-- <li><a href="{{ route('portfolio') }}" class="nav-link">Portfolio</a></li> -->
                                         <li><a href="{{ route('price') }}" class="nav-link">Prices</a></li>
-                                        <li><a href="{{ route('blog') }}" class="nav-link">Blog</a></li>
+                                        <!-- <li><a href="{{ route('blog') }}" class="nav-link">Blog</a></li> -->
                                         <li><a href="{{ route('contact') }}" class="nav-link">Contact</a></li>
                                     </ul>
                                 </nav>
