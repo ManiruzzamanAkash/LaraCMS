@@ -27,6 +27,9 @@ git clone https://github.com/ManiruzzamanAkash/LaraCMS.git
 **2. Install Composer**
 ```bash
 composer install
+
+# If Needed do a composer dump autload with optimization
+composer du -o
 ```
 
 **3. Create env file**
