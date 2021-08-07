@@ -29,22 +29,32 @@ git clone https://github.com/ManiruzzamanAkash/LaraCMS.git
 composer install
 ```
 
-**3. Run Migration & Seed**
+**3. Create env file**
+```bash
+Create a .env file by cloning .env.example file
+```
+
+**4. Create a Database named**
+```bash
+laravel_cms
+```
+
+**5. Run Migration & Seed**
 ```bash
 php artisan migrate:fresh --seed
 ```
 
-**4. Run On Local Machine**
+**6. Run On Local Machine**
 ```bash
 php artisan serve
 ```
 
-**5. Open Browser**
+**7. Open Browser**
 ```bash
 http://localhost:8000
 ```
 
-**6. Go to CMS Portal**
+**8. Go to CMS Portal**
 Go to this link - http://localhost:8000/admin
 
 Login Now by giving this data
@@ -55,7 +65,7 @@ Password: 123456
 
 ---
 
-> Note: **It's still not stable yet**. I'm working on it. May be needs this **July 2021**. I'll implement modular development system and many more advanced stuff here. Just wait & give it a **Star** to keep tracked with us. Thank you to stay with **Lara CMS**...
+> Note: **It's still not stable yet**. I'm working on it. May be needs this **August 2021**. I'll implement modular development system and many more advanced stuff here. Just wait & give it a **Star** to keep tracked with us. Thank you to staying with **Lara CMS**...
 
 ## Application Features `Admin Panel`
 
@@ -78,7 +88,10 @@ Password: 123456
   - [x] Edit Role with permission
   - [x] Delete Role
 - [ ] Permission Management
-  - [ ] Add Roles in Permission
+  - [ ] Add Permission
+
+- [ ] Team Management
+  - [ ] Assign admins/employees in Team
 
 > **Category Management**
 
@@ -103,6 +116,13 @@ Password: 123456
   - [x] Edit Blog
   - [x] List Blog
   - [x] Delete Blog
+
+> **Service Management**
+- [x] Service Management
+  - [x] Create Service
+  - [x] Edit Service
+  - [x] List Service
+  - [x] Delete Service
 
 > **Website Settings**
 
