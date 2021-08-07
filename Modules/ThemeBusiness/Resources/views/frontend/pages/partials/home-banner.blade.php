@@ -47,10 +47,8 @@
         </div>
         <div class="row justify-content-center justify-content-lg-start pb-5 mb-5">
             <div class="col-md-10 col-lg-6 text-center text-lg-end pe-lg-4 pb-5 mb-5">
-                <h1 class="text-color-light font-weight-medium line-height-4 text-10 mb-2 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300" style="animation-delay: 300ms;">High Quality <span class="font-weight-extra-bold custom-highlight-1 ws-nowrap p-1 customHighlightAnim customHighlightAnimDelay">
+                <h1 class="text-color-light font-weight-medium line-height-4 text-10 mb-5 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="300" style="animation-delay: 300ms;">High Quality <span class="font-weight-extra-bold custom-highlight-1 ws-nowrap p-1 customHighlightAnim customHighlightAnimDelay">
                     Computer Services</span> for all type of facilities</h1>
-                <a href="/.html#whoweare" data-hash="" data-hash-offset="150" class="btn btn-secondary btn-modern font-weight-bold text-3 px-5 py-3 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="700" style="animation-delay: 700ms;">LEARN MORE</a>
-                <div class="spacer pt-5 my-5"></div>
             </div>
         </div>
     </div>
