@@ -7,7 +7,7 @@
                     @foreach ($services as $service)
                         <div class="owl-item" style="width: 378.667px; margin-right: 20px;">
                             <div>
-                                <a href="" class="text-decoration-none">
+                                <a href="{{ route('demo.business.service.show', $service->slug) }}" class="text-decoration-none">
                                     <div class="card custom-card-style-1">
                                         <div class="card-body text-center py-5">
                                             <div class="custom-card-style-1-image-wrapper bg-primary d-inline-block mb-3">

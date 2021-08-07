@@ -5,6 +5,7 @@ namespace Modules\ThemeBusiness\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Service\Entities\Service;
 
 class FrontPagesController extends Controller
 {
@@ -16,11 +17,6 @@ class FrontPagesController extends Controller
     public function index()
     {
         return view('themebusiness::frontend.pages.index');
-    }
-
-    public function service()
-    {
-        return view('themebusiness::frontend.pages.service');
     }
 
     public function price()
