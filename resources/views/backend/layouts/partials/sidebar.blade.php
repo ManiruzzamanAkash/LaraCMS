@@ -1,4 +1,4 @@
-@php $user = Auth::guard('web')->user(); @endphp
+@php $user = Auth::guard('admin')->user(); @endphp
 
 <aside class="left-sidebar">
     <!-- Sidebar scroll-->

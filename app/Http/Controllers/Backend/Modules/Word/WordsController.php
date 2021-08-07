@@ -20,7 +20,7 @@ class WordsController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::guard('web')->user();
+            $this->user = Auth::guard('admin')->user();
             return $next($request);
         });
     }

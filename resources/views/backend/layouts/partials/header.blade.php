@@ -121,7 +121,7 @@
                     <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="{{ asset(App\Helpers\ReturnPathHelper::getAdminImage(Auth::guard('web')->id())) }}" alt="user" class="rounded-circle" width="40">
                         <span class="m-l-5 font-medium d-none d-sm-inline-block">
-                            {{ Auth::guard('web')->user()->first_name }}
+                            {{ Auth::guard('admin')->user()->first_name }}
                         <i class="mdi mdi-chevron-down"></i></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -133,8 +133,8 @@
                                 <img src="{{ asset(App\Helpers\ReturnPathHelper::getAdminImage(Auth::guard('web')->id())) }}" alt="user" class="rounded-circle" width="60">
                             </div>
                             <div class="m-l-10">
-                                <h4 class="m-b-0">{{ Auth::guard('web')->user()->first_name }} </h4>
-                                <p class=" m-b-0">{{ Auth::guard('web')->user()->email }} </p>
+                                <h4 class="m-b-0">{{ Auth::guard('admin')->user()->first_name }} </h4>
+                                <p class=" m-b-0">{{ Auth::guard('admin')->user()->email }} </p>
                             </div>
                         </div>
                         <div class="profile-dis scrollable">
