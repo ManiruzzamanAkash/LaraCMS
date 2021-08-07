@@ -125,6 +125,34 @@
                 </li>
                 @endif
 
+                @if ($user->can('service.view') || $user->can('service.create'))
+                <li class="sidebar-item ">
+                    <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="mdi mdi-arrow-right-drop-circle"></i>
+                        <span class="hide-menu">Services </span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.services.index') || Route::is('admin.services.create') || Route::is('admin.services.edit')) ? 'in' : null }}">
+                        @if ($user->can('service.view'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.services.index') }}" class="sidebar-link {{ (Route::is('admin.services.index') || Route::is('admin.services.edit')) ? 'active' : null }}">
+                                <i class="mdi mdi-view-list"></i>
+                                <span class="hide-menu"> Service List </span>
+                            </a>
+                        </li>
+                        @endif
+
+                        @if ($user->can('service.create'))
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.services.create') }}" class="sidebar-link {{ Route::is('admin.services.create') ? 'active' : null }}">
+                                <i class="mdi mdi-plus-circle"></i>
+                                <span class="hide-menu"> New Service </span>
+                            </a>
+                        </li>
+                        @endif
+                    </ul>
+                </li>
+                @endif
+
                 @if ($user->can('blog.view') || $user->can('blog.create'))
                     <li class="sidebar-item ">
                         <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
@@ -152,7 +180,6 @@
                         </ul>
                     </li>
                 @endif
-
 
                 @if ($user->can('contact.view') || $user->can('contact.create'))
                     <li class="sidebar-item ">
