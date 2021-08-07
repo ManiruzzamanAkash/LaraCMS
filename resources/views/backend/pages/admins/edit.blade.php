@@ -2,7 +2,7 @@
 
 @section('title')
     @include('backend.pages.admins.partials.title')
-    @php $user = Auth::guard('admin')->user(); @endphp
+    @php $user = Auth::user(); @endphp
 @endsection
 
 @section('admin-content')

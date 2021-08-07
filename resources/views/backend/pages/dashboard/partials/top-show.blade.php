@@ -1,4 +1,4 @@
-@php $user = Auth::guard('admin')->user(); @endphp
+@php $user = Auth::user(); @endphp
 
 <!-- ============================================================== -->
 <!-- Dashboard Page Top Data -->

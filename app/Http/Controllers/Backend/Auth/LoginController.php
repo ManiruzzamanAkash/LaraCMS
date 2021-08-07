@@ -27,7 +27,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if (Auth::guard('admin')->check()) {
+        if (Auth::check()) {
             return redirect('/admin');
         }
         return view('backend.auth.login');
@@ -43,12 +43,12 @@ class LoginController extends Controller
         ]);
 
         //Attempt to log the employee in
-        if (Auth::guard('admin')->attempt(['username' => $request->username, 'password' => $request->password, 'status' => 1], $request->remember)) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'status' => 1], $request->remember)) {
             //If successful then redirect to the intended location
             session()->flash('login_success', 'Successfully Logged In');
             return redirect()->intended(route('admin.index'));
         } else {
-            if (Auth::guard('admin')->attempt(['email' => $request->username, 'password' => $request->password, 'status' => 1], $request->remember)) {
+            if (Auth::attempt(['email' => $request->username, 'password' => $request->password, 'status' => 1], $request->remember)) {
                 //If successful then redirect to the intended location
                 session()->flash('login_success', 'Successfully Logged In');
                 return redirect()->intended(route('admin.index'));
@@ -74,7 +74,7 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::logout();
         return redirect()->route('admin.login');
     }
 }

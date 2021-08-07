@@ -4,7 +4,7 @@
 
 <div class="row">
     <!-- column -->
-    @if (Auth::guard('admin')->user()->can('page.view'))
+    @if (Auth::user()->can('page.view'))
         <div class="col-lg-6">
             <div class="card">
                 <div class="card-body border-bottom">
@@ -49,7 +49,7 @@
 
 
 
-    @if (Auth::guard('admin')->user()->can('blog.view'))
+    @if (Auth::user()->can('blog.view'))
     <!-- column -->
     <div class="col-lg-6">
         <div class="card">

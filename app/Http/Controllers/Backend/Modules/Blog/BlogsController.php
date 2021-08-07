@@ -22,7 +22,7 @@ class BlogsController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::guard('admin')->user();
+            $this->user = Auth::user();
             return $next($request);
         });
     }
@@ -208,7 +208,7 @@ class BlogsController extends Controller
             $blog->description = $request->description;
             $blog->meta_description = $request->meta_description;
             $blog->created_at = Carbon::now();
-            $blog->created_by = Auth::guard('admin')->id();
+            $blog->created_by = Auth::id();
             $blog->updated_at = Carbon::now();
             $blog->save();
 
@@ -293,7 +293,7 @@ class BlogsController extends Controller
             $blog->status = $request->status;
             $blog->description = $request->description;
             $blog->meta_description = $request->meta_description;
-            $blog->updated_by = Auth::guard('admin')->id();
+            $blog->updated_by = Auth::id();
             $blog->updated_at = Carbon::now();
             $blog->save();
 
@@ -327,7 +327,7 @@ class BlogsController extends Controller
             return redirect()->route('admin.blogs.trashed');
         }
         $blog->deleted_at = Carbon::now();
-        $blog->deleted_by = Auth::guard('admin')->id();
+        $blog->deleted_by = Auth::id();
         $blog->status = 0;
         $blog->save();
 

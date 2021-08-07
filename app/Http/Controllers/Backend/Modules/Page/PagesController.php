@@ -11,7 +11,6 @@ use App\Models\Language;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Page;
-use App\Repositories\TermRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +24,7 @@ class PagesController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::guard('admin')->user();
+            $this->user = Auth::user();
             return $next($request);
         });
     }
@@ -233,7 +232,7 @@ class PagesController extends Controller
             $page->description = $request->description;
             $page->meta_description = $request->meta_description;
             $page->created_at = Carbon::now();
-            $page->created_by = Auth::guard('admin')->id();
+            $page->created_by = Auth::id();
             $page->updated_at = Carbon::now();
             $page->save();
 
@@ -326,7 +325,7 @@ class PagesController extends Controller
             $page->status = $request->status;
             $page->description = $request->description;
             $page->meta_description = $request->meta_description;
-            $page->updated_by = Auth::guard('admin')->id();
+            $page->updated_by = Auth::id();
             $page->updated_at = Carbon::now();
             $page->save();
 
@@ -360,7 +359,7 @@ class PagesController extends Controller
             return redirect()->route('admin.pages.trashed');
         }
         $page->deleted_at = Carbon::now();
-        $page->deleted_by = Auth::guard('admin')->id();
+        $page->deleted_by = Auth::id();
         $page->status = 0;
         $page->save();
 

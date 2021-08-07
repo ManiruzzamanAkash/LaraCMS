@@ -14,7 +14,7 @@
                 <a href="{{ route('admin.index') }}" class="btn btn-primary btn-rounded waves-effect waves-light m-b-40"><i class="fa fa-arrow-left"></i> Back to home</a>
 
 
-                @if (Auth::guard('admin')->check())
+                @if (Auth::check())
                     <button class="btn btn-danger btn-rounded waves-effect waves-light m-b-40" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" aria-expanded="false" > Logout Now <i class="fa fa-arrow-right"></i></button>
                     <form id="logout-form" method="POST" style="display: none;" action="{{ route('admin.logout') }}">
                         @csrf

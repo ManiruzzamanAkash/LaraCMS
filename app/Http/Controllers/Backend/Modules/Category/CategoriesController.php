@@ -9,8 +9,6 @@ use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Term;
-use App\Repositories\CategoryRepository;
-use App\Repositories\TermRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +22,7 @@ class CategoriesController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::guard('admin')->user();
+            $this->user = Auth::user();
             return $next($request);
         });
     }
@@ -235,7 +233,7 @@ class CategoriesController extends Controller
             $category->meta_description = $request->meta_description;
             $category->priority = $request->priority ? $request->priority : 1;
             $category->created_at = Carbon::now();
-            $category->created_by = Auth::guard('admin')->id();
+            $category->created_by = Auth::id();
             $category->updated_at = Carbon::now();
             $category->save();
 
@@ -259,7 +257,6 @@ class CategoriesController extends Controller
                 'key' => $category->slug
             ];
 
-            TermRepository::insert_term_after_model_create($data);
             Track::newTrack($category->name, 'New Category has been created');
             DB::commit();
             session()->flash('success', 'New Category has been created successfully !!');
@@ -351,7 +348,7 @@ class CategoriesController extends Controller
             $category->description = $request->description;
             $category->meta_description = $request->meta_description;
             $category->priority = $request->priority;
-            $category->updated_by = Auth::guard('admin')->id();
+            $category->updated_by = Auth::id();
             $category->updated_at = Carbon::now();
             $category->save();
 
@@ -374,8 +371,6 @@ class CategoriesController extends Controller
                 'en' => $category->name,
                 'key' => $category->slug
             ];
-
-            TermRepository::insert_term_after_model_create($data);
 
             Track::newTrack($category->slug, 'Category has been updated successfully !!');
             DB::commit();
@@ -407,7 +402,7 @@ class CategoriesController extends Controller
             return redirect()->route('admin.categories.trashed');
         }
         $category->deleted_at = Carbon::now();
-        $category->deleted_by = Auth::guard('admin')->id();
+        $category->deleted_by = Auth::id();
         $category->status = 0;
         $category->save();
 

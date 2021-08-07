@@ -22,7 +22,7 @@ class AdminsController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::guard('admin')->user();
+            $this->user = Auth::user();
             return $next($request);
         });
     }
@@ -220,7 +220,7 @@ class AdminsController extends Controller
             $admin->password = Hash::make($request->password);
             $admin->status = $request->status;
             $admin->created_at = Carbon::now();
-            $admin->created_by = Auth::guard('admin')->id();
+            $admin->created_by = Auth::id();
             $admin->updated_at = Carbon::now();
             $admin->save();
 
@@ -282,7 +282,7 @@ class AdminsController extends Controller
             return view('errors.403', compact('message'));
         }
 
-        $id = Auth::guard('admin')->id();
+        $id = Auth::id();
         return $this->edit($id, true);
     }
 
@@ -370,7 +370,7 @@ class AdminsController extends Controller
             return view('errors.403', compact('message'));
         }
 
-        $id = Auth::guard('admin')->id();
+        $id = Auth::id();
         return $this->update($request, $id, true);
     }
 
@@ -393,7 +393,7 @@ class AdminsController extends Controller
             return redirect()->route('admin.admins.trashed');
         }
         $admin->deleted_at = Carbon::now();
-        $admin->deleted_by = Auth::guard('admin')->id();
+        $admin->deleted_by = Auth::id();
         $admin->status = 0;
         $admin->save();
 
