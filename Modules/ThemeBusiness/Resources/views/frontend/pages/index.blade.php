@@ -288,7 +288,7 @@
         </section>
 
 
-        @include('themebusiness::frontend.pages.partials.our-portfolio')
+        <!-- @include('themebusiness::frontend.pages.partials.our-portfolio') -->
 
         @include('themebusiness::frontend.pages.partials.our-team')
 
