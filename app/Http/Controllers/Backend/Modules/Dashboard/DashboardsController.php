@@ -5,15 +5,13 @@ namespace App\Http\Controllers\Backend\Modules\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Blog;
-use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Models\Page;
+use Modules\Article\Entities\Category;
+use Modules\Article\Entities\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DashboardsController extends Controller
 {
-
     public $user;
 
     public function __construct()
