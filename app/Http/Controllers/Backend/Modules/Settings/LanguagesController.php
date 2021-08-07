@@ -137,9 +137,6 @@ class LanguagesController extends Controller
                 'country_id' => $request->country_id
             ]);
 
-            // Add a column in the database if column does not exists
-            $this->createLanguageColumn($request->code);
-
             Track::newTrack($language->name, 'New Language has been created');
             DB::commit();
             session()->flash('success', 'New Language has been created successfully !!');
@@ -240,9 +237,6 @@ class LanguagesController extends Controller
                 'country_id' => $request->country_id
             ]);
 
-            // Add a column in the database if column does not exists
-            $this->createLanguageColumn($request->code);
-
             Track::newTrack($request->name, 'Language has been updated successfully !!');
             DB::commit();
             session()->flash('success', 'Language has been updated successfully !!');
@@ -252,35 +246,6 @@ class LanguagesController extends Controller
             DB::rollBack();
             return back();
         }
-    }
-
-    /**
-     * Create Languge Column
-     *
-     * @param string $column_name
-     *
-     * @return void
-     */
-    public function createLanguageColumn($column_name)
-    {
-        return false;
-
-        $pdo = DB::connection()->getPdo();
-
-        // Insert for words table
-        if ( ! Schema::hasColumn('words', $column_name) ){
-            $pdo->exec("ALTER TABLE `words` ADD `$column_name` TEXT NULL DEFAULT NULL AFTER `order_nr`");
-        };
-
-        // Insert for sentences table
-        if ( ! Schema::hasColumn('sentences', $column_name) ){
-            $pdo->exec("ALTER TABLE `sentences` ADD `$column_name` TEXT NULL DEFAULT NULL AFTER `order_nr`");
-        };
-
-        // Insert for terms table
-        if ( ! Schema::hasColumn('terms', $column_name) ){
-            $pdo->exec("ALTER TABLE `terms` ADD `$column_name` TEXT NULL DEFAULT NULL AFTER `order_nr`");
-        };
     }
 
 }
