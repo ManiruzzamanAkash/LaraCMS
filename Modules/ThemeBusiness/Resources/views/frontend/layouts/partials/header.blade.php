@@ -7,7 +7,7 @@
                     <div class="header-row">
                         <div class="header-logo" style="width: 123px; height: 33px;">
                             <a href="{{ route('demo.business.index') }}">
-                                <img src="{{ asset('public/modules/theme-business/images/common/logo.png') }}" class="img-fluid" alt="" style="top: 0px; height: 90px;">
+                                <img src="{{ asset('public/modules/theme-business/images/logos/logo.png') }}" class="img-fluid" alt="" style="top: 0px; height: 90px;">
                             </a>
                         </div>
                     </div>

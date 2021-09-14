@@ -5,7 +5,7 @@
     <div class="auth-box">
         <div id="">
             <div class="logo">
-                <span class="db"><img src="{{ asset('public/assets/common/logos/logo.png') }}" alt="logo" /></span>
+                <span class="db"><img src="{{ asset('public/assets/logos/logo.png') }}" alt="logo" /></span>
                 <h5 class="font-medium m-b-20">Recover Password</h5>
                 <span>Enter your Email and instructions will be sent to you!</span>
             </div>
