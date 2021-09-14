@@ -1,10 +1,10 @@
 -- -------------------------------------------------------------
--- TablePlus 3.12.8(368)
+-- TablePlus 4.1.2(382)
 --
 -- https://tableplus.com/
 --
 -- Database: laravel_cms
--- Generation Time: 2021-07-10 21:10:14.0100
+-- Generation Time: 2021-09-15 02:21:25.6820
 -- -------------------------------------------------------------
 
 
@@ -49,51 +49,6 @@ CREATE TABLE `admins` (
   CONSTRAINT `admins_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `advertisement_types` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `parent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `advertisement_types_slug_unique` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `advertisement_types_selected` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `advertisement_id` bigint unsigned NOT NULL,
-  `advertisement_type_id` bigint unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `advertisements` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `advertiser_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=>active, 0=>inactive',
-  `start_date` date DEFAULT NULL,
-  `expiry_date` date DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_by` bigint unsigned DEFAULT NULL,
-  `updated_by` bigint unsigned DEFAULT NULL,
-  `deleted_by` bigint unsigned DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `advertisements_slug_unique` (`slug`),
-  KEY `advertisements_created_by_foreign` (`created_by`),
-  KEY `advertisements_updated_by_foreign` (`updated_by`),
-  KEY `advertisements_deleted_by_foreign` (`deleted_by`),
-  CONSTRAINT `advertisements_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `advertisements_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `advertisements_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 CREATE TABLE `article_types` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -126,6 +81,13 @@ CREATE TABLE `blogs` (
   CONSTRAINT `blogs_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  UNIQUE KEY `cache_key_unique` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE `categories` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -157,19 +119,6 @@ CREATE TABLE `categories` (
   CONSTRAINT `categories_parent_category_id_foreign` FOREIGN KEY (`parent_category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
   CONSTRAINT `categories_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `category_advertisements` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `category_id` bigint unsigned NOT NULL,
-  `advertisement_id` bigint unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `category_advertisements_category_id_foreign` (`category_id`),
-  KEY `category_advertisements_advertisement_id_foreign` (`advertisement_id`),
-  CONSTRAINT `category_advertisements_advertisement_id_foreign` FOREIGN KEY (`advertisement_id`) REFERENCES `advertisements` (`id`),
-  CONSTRAINT `category_advertisements_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `contacts` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -213,57 +162,6 @@ CREATE TABLE `failed_jobs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `language2_advertisements` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `language_id` bigint unsigned NOT NULL,
-  `advertisement_id` bigint unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `language2_advertisements_language_id_foreign` (`language_id`),
-  KEY `language2_advertisements_advertisement_id_foreign` (`advertisement_id`),
-  CONSTRAINT `language2_advertisements_advertisement_id_foreign` FOREIGN KEY (`advertisement_id`) REFERENCES `advertisements` (`id`),
-  CONSTRAINT `language2_advertisements_language_id_foreign` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `language_advertisements` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `language_id` bigint unsigned NOT NULL,
-  `advertisement_id` bigint unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `language_advertisements_language_id_foreign` (`language_id`),
-  KEY `language_advertisements_advertisement_id_foreign` (`advertisement_id`),
-  CONSTRAINT `language_advertisements_advertisement_id_foreign` FOREIGN KEY (`advertisement_id`) REFERENCES `advertisements` (`id`),
-  CONSTRAINT `language_advertisements_language_id_foreign` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `language_connections` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `lang1` bigint unsigned NOT NULL,
-  `lang2` bigint unsigned NOT NULL,
-  `total` bigint unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `language_connections_lang1_foreign` (`lang1`),
-  KEY `language_connections_lang2_foreign` (`lang2`),
-  CONSTRAINT `language_connections_lang1_foreign` FOREIGN KEY (`lang1`) REFERENCES `languages` (`id`),
-  CONSTRAINT `language_connections_lang2_foreign` FOREIGN KEY (`lang2`) REFERENCES `languages` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `language_preferreds` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `language_id` bigint unsigned NOT NULL,
-  `preferred_language_id` bigint unsigned NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `language_preferreds_language_id_foreign` (`language_id`),
-  KEY `language_preferreds_preferred_language_id_foreign` (`preferred_language_id`),
-  CONSTRAINT `language_preferreds_language_id_foreign` FOREIGN KEY (`language_id`) REFERENCES `languages` (`id`),
-  CONSTRAINT `language_preferreds_preferred_language_id_foreign` FOREIGN KEY (`preferred_language_id`) REFERENCES `languages` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 CREATE TABLE `languages` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -285,7 +183,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint unsigned NOT NULL,
@@ -373,7 +271,6 @@ CREATE TABLE `pages` (
   `banner_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category_id` bigint unsigned DEFAULT NULL COMMENT 'Null if page has no category',
   `article_type_id` bigint unsigned DEFAULT NULL COMMENT 'If Article Belongs to a Type',
-  `advertisement_ids` json DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=>active, 0=>inactive',
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_by` bigint unsigned DEFAULT NULL,
@@ -409,7 +306,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `role_has_permissions` (
   `permission_id` bigint unsigned NOT NULL,
@@ -428,53 +325,39 @@ CREATE TABLE `roles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `sentences` (
+CREATE TABLE `services` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `category_id` bigint unsigned NOT NULL,
-  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Main Category Name, e.g: Education',
-  `chapter_id` bigint unsigned NOT NULL,
-  `chapter` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Sub category Name or chapter name',
-  `en` text COLLATE utf8mb4_unicode_ci,
-  `fi` text COLLATE utf8mb4_unicode_ci,
-  `se` text COLLATE utf8mb4_unicode_ci,
-  `no` text COLLATE utf8mb4_unicode_ci,
-  `dk` text COLLATE utf8mb4_unicode_ci,
-  `de` text COLLATE utf8mb4_unicode_ci,
-  `it` text COLLATE utf8mb4_unicode_ci,
-  `fr` text COLLATE utf8mb4_unicode_ci,
-  `es` text COLLATE utf8mb4_unicode_ci,
-  `pl` text COLLATE utf8mb4_unicode_ci,
-  `al` text COLLATE utf8mb4_unicode_ci,
-  `ru` text COLLATE utf8mb4_unicode_ci,
-  `ar` text COLLATE utf8mb4_unicode_ci,
-  `bn` text COLLATE utf8mb4_unicode_ci,
-  `so` text COLLATE utf8mb4_unicode_ci,
-  `ku` text COLLATE utf8mb4_unicode_ci,
-  `vi` text COLLATE utf8mb4_unicode_ci,
-  `cn` text COLLATE utf8mb4_unicode_ci,
-  `sr` text COLLATE utf8mb4_unicode_ci,
-  `tr` text COLLATE utf8mb4_unicode_ci,
-  `order_nr` int unsigned NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Default will be pending = 0',
-  `is_section` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Will be used as section or not',
-  `created_by` bigint unsigned NOT NULL COMMENT 'Created By User',
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `meta_description` text COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_id` bigint unsigned DEFAULT NULL COMMENT 'Null if page has no category',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '1=>active, 0=>inactive',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_by` bigint unsigned DEFAULT NULL,
   `updated_by` bigint unsigned DEFAULT NULL,
   `deleted_by` bigint unsigned DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `sentences_category_id_foreign` (`category_id`),
-  KEY `sentences_chapter_id_foreign` (`chapter_id`),
-  CONSTRAINT `sentences_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  CONSTRAINT `sentences_chapter_id_foreign` FOREIGN KEY (`chapter_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `services_slug_unique` (`slug`),
+  KEY `services_created_by_foreign` (`created_by`),
+  KEY `services_updated_by_foreign` (`updated_by`),
+  KEY `services_deleted_by_foreign` (`deleted_by`),
+  KEY `services_category_id_foreign` (`category_id`),
+  CONSTRAINT `services_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `services_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `services_deleted_by_foreign` FOREIGN KEY (`deleted_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `services_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `settings` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `site_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Laravel CMS',
+  `site_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Geeks of Sydney',
   `site_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'logo.png',
   `site_favicon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'favicon.ico',
   `site_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -502,59 +385,6 @@ CREATE TABLE `settings` (
   KEY `settings_updated_by_foreign` (`updated_by`),
   CONSTRAINT `settings_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `admins` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE `terms` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `category` bigint unsigned DEFAULT NULL,
-  `country` bigint unsigned DEFAULT NULL,
-  `language` bigint unsigned DEFAULT NULL,
-  `menu` tinyint(1) DEFAULT '0',
-  `content` tinyint(1) DEFAULT '0',
-  `page_id` bigint unsigned DEFAULT NULL,
-  `footer` tinyint(1) DEFAULT '0',
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `en` text COLLATE utf8mb4_unicode_ci,
-  `fi` text COLLATE utf8mb4_unicode_ci,
-  `se` text COLLATE utf8mb4_unicode_ci,
-  `no` text COLLATE utf8mb4_unicode_ci,
-  `dk` text COLLATE utf8mb4_unicode_ci,
-  `de` text COLLATE utf8mb4_unicode_ci,
-  `it` text COLLATE utf8mb4_unicode_ci,
-  `fr` text COLLATE utf8mb4_unicode_ci,
-  `es` text COLLATE utf8mb4_unicode_ci,
-  `pl` text COLLATE utf8mb4_unicode_ci,
-  `al` text COLLATE utf8mb4_unicode_ci,
-  `ru` text COLLATE utf8mb4_unicode_ci,
-  `ar` text COLLATE utf8mb4_unicode_ci,
-  `bn` text COLLATE utf8mb4_unicode_ci,
-  `so` text COLLATE utf8mb4_unicode_ci,
-  `ku` text COLLATE utf8mb4_unicode_ci,
-  `vi` text COLLATE utf8mb4_unicode_ci,
-  `cn` text COLLATE utf8mb4_unicode_ci,
-  `sr` text COLLATE utf8mb4_unicode_ci,
-  `tr` text COLLATE utf8mb4_unicode_ci,
-  `order_nr` int unsigned NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Default will be approved = 1',
-  `created_by` bigint unsigned NOT NULL COMMENT 'Created By User',
-  `updated_by` bigint unsigned DEFAULT NULL,
-  `deleted_by` bigint unsigned DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `terms_category_index` (`category`),
-  KEY `terms_country_index` (`country`),
-  KEY `terms_language_index` (`language`),
-  KEY `terms_menu_index` (`menu`),
-  KEY `terms_content_index` (`content`),
-  KEY `terms_page_id_index` (`page_id`),
-  KEY `terms_footer_index` (`footer`),
-  KEY `terms_key_index` (`key`),
-  CONSTRAINT `terms_category_foreign` FOREIGN KEY (`category`) REFERENCES `categories` (`id`),
-  CONSTRAINT `terms_country_foreign` FOREIGN KEY (`country`) REFERENCES `countries` (`id`),
-  CONSTRAINT `terms_language_foreign` FOREIGN KEY (`language`) REFERENCES `languages` (`id`),
-  CONSTRAINT `terms_page_id_foreign` FOREIGN KEY (`page_id`) REFERENCES `pages` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `tracks` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -599,93 +429,19 @@ CREATE TABLE `users` (
   KEY `users_phone_no_index` (`phone_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE `words` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `category_id` bigint unsigned NOT NULL,
-  `category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Main Category Name, e.g: Education',
-  `chapter_id` bigint unsigned NOT NULL,
-  `chapter` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Sub category Name or chapter name',
-  `en` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fi` text COLLATE utf8mb4_unicode_ci,
-  `se` text COLLATE utf8mb4_unicode_ci,
-  `no` text COLLATE utf8mb4_unicode_ci,
-  `dk` text COLLATE utf8mb4_unicode_ci,
-  `de` text COLLATE utf8mb4_unicode_ci,
-  `it` text COLLATE utf8mb4_unicode_ci,
-  `fr` text COLLATE utf8mb4_unicode_ci,
-  `es` text COLLATE utf8mb4_unicode_ci,
-  `pl` text COLLATE utf8mb4_unicode_ci,
-  `al` text COLLATE utf8mb4_unicode_ci,
-  `ru` text COLLATE utf8mb4_unicode_ci,
-  `ar` text COLLATE utf8mb4_unicode_ci,
-  `bn` text COLLATE utf8mb4_unicode_ci,
-  `so` text COLLATE utf8mb4_unicode_ci,
-  `ku` text COLLATE utf8mb4_unicode_ci,
-  `vi` text COLLATE utf8mb4_unicode_ci,
-  `cn` text COLLATE utf8mb4_unicode_ci,
-  `sr` text COLLATE utf8mb4_unicode_ci,
-  `tr` text COLLATE utf8mb4_unicode_ci,
-  `order_nr` int unsigned NOT NULL DEFAULT '1',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Default will be pending = 0',
-  `is_section` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Will be used as section or not',
-  `created_by` bigint unsigned NOT NULL COMMENT 'Created By User',
-  `updated_by` bigint unsigned DEFAULT NULL,
-  `deleted_by` bigint unsigned DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `words_category_id_foreign` (`category_id`),
-  KEY `words_chapter_id_foreign` (`chapter_id`),
-  CONSTRAINT `words_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  CONSTRAINT `words_chapter_id_foreign` FOREIGN KEY (`chapter_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 INSERT INTO `admins` (`id`, `first_name`, `last_name`, `username`, `phone_no`, `email`, `email_verified_at`, `password`, `avatar`, `status`, `remember_token`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', '', 'superadmin', '019XXXXXXXX', 'superadmin@example.com', NULL, '$2y$10$xQ8UIbvUNLn0WICbeNVyRO4RBi4BRjOL3RJ1mAP/Ub.4B9TWaK40C', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(2, 'Admin', '', 'admin', '018XXXXXXXX', 'admin@example.com', NULL, '$2y$10$flnTknhyU7XJI3MpAqsdR.GtJlJj.ILA2bnY6Nrxjjx3bWqS54xI.', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(3, 'Editor', '', 'editor', '017XXXXXXXX', 'editor@example.com', NULL, '$2y$10$ulTWgsDzV8fvI0dw7vUJzutffj3/LG9VMvHzZeISITm9kx9xwQB56', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-07-10 14:24:30', '2021-07-10 14:24:30');
-
-INSERT INTO `advertisement_types` (`id`, `name`, `slug`, `parent`) VALUES
-(1, 'Biz Ads 1', 'biz1', 'Home'),
-(2, 'Biz Ads 2', 'biz2', 'Home'),
-(3, 'Biz Ads 3', 'biz3', 'Home'),
-(4, 'Offer Ads 1', 'offer1', 'Home'),
-(5, 'Offer Ads 2', 'offer2', 'Home'),
-(6, 'Sponsor Ads 1', 'sponsor1', 'Category'),
-(7, 'Sponsor Ads 2', 'sponsor2', 'Category'),
-(8, 'Sponsor Ads 3', 'sponsor3', 'Category'),
-(9, 'Sponsor Ads 4', 'sponsor4', 'Category'),
-(10, 'Gold Ads', 'gold', 'Chapter'),
-(11, 'Silver Ads', 'silver', 'Chapter'),
-(12, 'Bronze Ads', 'bronze', 'Chapter'),
-(13, 'Offer Chapter Ads', 'offer_chapter', 'Chapter'),
-(14, 'Why DM Ads 1', 'dm1', 'Why DM'),
-(15, 'Why DM Ads 2', 'dm2', 'Why DM'),
-(16, 'Why DM Ads 3', 'dm3', 'Why DM'),
-(17, 'Why DM Ads 4', 'dm4', 'Why DM'),
-(18, 'Learn 1000 words 1 Ads', '1000_1', 'Learn 1000 Words'),
-(19, 'Learn 1000 words 2 Ads', '1000_2', 'Learn 1000 Words'),
-(20, 'Blog Ads 1', 'blog1', 'Blog'),
-(21, 'Blog Ads 2', 'blog2', 'Blog'),
-(22, 'Blog Ads 3', 'blog3', 'Blog'),
-(23, 'Blog Ads 4', 'blog4', 'Blog'),
-(24, 'Marketing Ads 1', 'marketing1', 'Marketing'),
-(25, 'Marketing Ads 2', 'marketing2', 'Marketing'),
-(26, 'Marketing Ads 3', 'marketing3', 'Marketing'),
-(27, 'Marketing Ads 4', 'marketing4', 'Marketing'),
-(28, 'Statistics Ads', 'statistics', 'Info'),
-(29, 'Media Ads', 'media', 'Info');
+(1, 'Super Admin', '', 'superadmin', '019XXXXXXXX', 'superadmin@example.com', NULL, '$2y$10$clsFbJxGHyq5n9fZGNetJuiF6NkgDd90K2mMEYSRQViylvWeO3zbu', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-09-14 15:59:42', '2021-09-14 15:59:42'),
+(2, 'Admin', '', 'admin', '018XXXXXXXX', 'admin@example.com', NULL, '$2y$10$zcG5XXjUFjIS/Y/HsRdX7.ojNl2iqXoiJ1hqlIRlzcNY.GauKVbju', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-09-14 15:59:42', '2021-09-14 15:59:42'),
+(3, 'Editor', '', 'editor', '017XXXXXXXX', 'editor@example.com', NULL, '$2y$10$R1Mz6Ze17jClYcaOyAZ9uehiMe09V0tzL.qpk7zslE5Q2H4R51CxG', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2021-09-14 15:59:42', '2021-09-14 15:59:42');
 
 INSERT INTO `blogs` (`id`, `title`, `slug`, `image`, `description`, `meta_description`, `status`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, 'This is a simple blog from admin panel', 'this-is-a-simple-blog-from-admin-panel', NULL, '<div>Welcome to our blog <br /></div>', NULL, 1, NULL, NULL, NULL, NULL, '2021-07-10 14:24:31', '2021-07-10 14:24:31'),
-(2, 'This is a another blog from admin panel', 'this-is-a-another-blog-from-admin-panel', NULL, '<div>Welcome to our blog <br /></div>', NULL, 1, NULL, NULL, NULL, NULL, '2021-07-10 14:24:31', '2021-07-10 14:24:31');
+(1, 'This is a simple blog from admin panel', 'this-is-a-simple-blog-from-admin-panel', NULL, '<div>Welcome to our blog <br /></div>', NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43'),
+(2, 'This is a another blog from admin panel', 'this-is-a-another-blog-from-admin-panel', NULL, '<div>Welcome to our blog <br /></div>', NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43');
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `banner_image`, `logo_image`, `description`, `meta_description`, `parent_category_id`, `status`, `enable_bg`, `bg_color`, `text_color`, `priority`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, 'Life Style', 'life-style', NULL, NULL, NULL, NULL, NULL, 1, 0, 'FFFFFF', '000000', 1, NULL, NULL, NULL, NULL, '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(2, 'Fashion', 'fashion', NULL, NULL, NULL, NULL, 1, 1, 0, 'FFFFFF', '000000', 1, NULL, NULL, NULL, NULL, '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(3, 'Earning', 'earning', NULL, NULL, NULL, NULL, NULL, 1, 0, 'FFFFFF', '000000', 1, NULL, NULL, NULL, NULL, '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(4, 'Test Category', 'testcategory', NULL, NULL, NULL, NULL, NULL, 1, 0, 'FFFFFF', '000000', 4, NULL, 1, 1, NULL, '2021-07-10 14:31:12', '2021-07-10 14:31:42');
+(1, 'Application Developement', 'application-development', NULL, NULL, NULL, NULL, NULL, 1, 0, 'FFFFFF', '000000', 2, NULL, NULL, 1, NULL, '2021-09-14 15:59:43', '2021-09-14 17:02:54'),
+(3, 'Computer Service', 'computer', NULL, NULL, NULL, NULL, NULL, 1, 0, 'FFFFFF', '000000', 1, NULL, NULL, 1, NULL, '2021-09-14 15:59:43', '2021-09-14 17:01:17'),
+(4, 'Other', 'other', NULL, NULL, NULL, NULL, NULL, 1, 0, 'FFFFFF', '000000', 3, NULL, 1, NULL, NULL, '2021-09-14 17:02:37', '2021-09-14 17:02:37');
 
 INSERT INTO `countries` (`id`, `name`, `code`, `flag`) VALUES
 (1, 'United States of America', 'en', 'en.png'),
@@ -730,20 +486,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2020_05_01_000080_create_contacts_table', 1),
 (15, '2020_05_01_000090_create_tracks_table', 1),
 (16, '2021_02_03_061323_create_article_types_table', 1),
-(17, '2021_02_03_094230_create_advertisements_table', 1),
-(18, '2021_02_27_184353_create_permission_tables', 1),
-(19, '2021_02_27_185000_create_countries_table', 1),
-(20, '2021_02_27_185728_create_languages_table', 1),
-(21, '2021_02_27_195321_create_words_table', 1),
-(22, '2021_02_27_195339_create_sentences_table', 1),
-(23, '2021_03_07_062247_create_terms_table', 1),
-(24, '2021_03_14_191206_create_language_advertisements_table', 1),
-(25, '2021_03_14_194416_create_language_preferreds_table', 1),
-(26, '2021_03_23_184625_create_category_advertisements_table', 1),
-(27, '2021_04_24_161735_create_advertisement_types_table', 1),
-(28, '2021_04_24_161954_create_advertisement_type_selecteds_table', 1),
-(29, '2021_05_01_070112_create_language_connections_table', 1),
-(30, '2021_06_21_235313_create_language2_advertisements_table', 1);
+(17, '2021_02_27_184353_create_permission_tables', 1),
+(18, '2021_02_27_185000_create_countries_table', 1),
+(19, '2021_02_27_185728_create_languages_table', 1),
+(20, '2021_08_07_071049_create_cache_table', 1),
+(21, '2021_08_07_101047_create_services_table', 1);
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (2, 'App\\Models\\Admin', 1),
@@ -751,59 +498,63 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (3, 'App\\Models\\Admin', 3),
 (4, 'App\\Models\\Admin', 1);
 
-INSERT INTO `pages` (`id`, `title`, `slug`, `description`, `meta_description`, `image`, `banner_image`, `category_id`, `article_type_id`, `advertisement_ids`, `status`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, 'About Us', 'about-us', '<div>Welcome to our about us page </div>', NULL, 'About Us-1625929158-logo.webp', 'About Us-1625929158-banner.png', 1, NULL, NULL, 1, NULL, NULL, 1, NULL, '2021-07-10 14:24:30', '2021-07-10 14:59:18'),
-(2, 'Contact Us', 'contact-us', '<div>Welcome to our contact us page </div>', NULL, 'Contact Us-1625929180-logo.png', 'Contact Us-1625929180-banner.webp', 1, NULL, NULL, 1, NULL, NULL, 1, NULL, '2021-07-10 14:24:31', '2021-07-10 14:59:40');
+INSERT INTO `pages` (`id`, `title`, `slug`, `description`, `meta_description`, `image`, `banner_image`, `category_id`, `article_type_id`, `status`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
+(1, 'About Us', 'about-us', '<div>Welcome to our about us page <br /></div>', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43'),
+(2, 'Contact Us', 'contact-us', '<div>Welcome to our contact us page <br /></div>', NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43');
 
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at`, `updated_at`) VALUES
-(1, 'dashboard.view', 'admin', 'dashboard', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(2, 'settings.view', 'admin', 'settings', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(3, 'settings.edit', 'admin', 'settings', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(4, 'permission.view', 'admin', 'permission', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(5, 'permission.create', 'admin', 'permission', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(6, 'permission.edit', 'admin', 'permission', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(7, 'permission.delete', 'admin', 'permission', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(8, 'admin.view', 'admin', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(9, 'admin.create', 'admin', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(10, 'admin.edit', 'admin', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(11, 'admin.delete', 'admin', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(12, 'admin_profile.view', 'admin', 'admin_profile', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(13, 'admin_profile.edit', 'admin', 'admin_profile', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(14, 'role.view', 'admin', 'role_manage', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(15, 'role.create', 'admin', 'role_manage', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(16, 'role.edit', 'admin', 'role_manage', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(17, 'role.delete', 'admin', 'role_manage', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(18, 'user.view', 'admin', 'user', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(19, 'user.create', 'admin', 'user', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(20, 'user.edit', 'admin', 'user', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(21, 'user.delete', 'admin', 'user', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(22, 'category.view', 'admin', 'category', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(23, 'category.create', 'admin', 'category', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(24, 'category.edit', 'admin', 'category', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(25, 'category.delete', 'admin', 'category', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(26, 'page.view', 'admin', 'page', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(27, 'page.create', 'admin', 'page', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(28, 'page.edit', 'admin', 'page', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(29, 'page.delete', 'admin', 'page', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(30, 'blog.view', 'admin', 'blog', '2021-07-10 14:24:28', '2021-07-10 14:24:28'),
-(31, 'blog.create', 'admin', 'blog', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(32, 'blog.edit', 'admin', 'blog', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(33, 'blog.delete', 'admin', 'blog', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(34, 'slider.view', 'admin', 'slider', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(35, 'slider.create', 'admin', 'slider', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(36, 'slider.edit', 'admin', 'slider', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(37, 'slider.delete', 'admin', 'slider', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(38, 'tracking.view', 'admin', 'tracking', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(39, 'tracking.delete', 'admin', 'tracking', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(40, 'email_notification.view', 'admin', 'notifications', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(41, 'email_notification.edit', 'admin', 'notifications', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(42, 'email_message.view', 'admin', 'notifications', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(43, 'email_message.edit', 'admin', 'notifications', '2021-07-10 14:24:29', '2021-07-10 14:24:29'),
-(44, 'module.view', 'admin', 'module', '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(45, 'module.create', 'admin', 'module', '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(46, 'module.edit', 'admin', 'module', '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(47, 'module.delete', 'admin', 'module', '2021-07-10 14:24:30', '2021-07-10 14:24:30'),
-(48, 'module.toggle', 'admin', 'module', '2021-07-10 14:24:30', '2021-07-10 14:24:30');
+(1, 'dashboard.view', 'admin', 'dashboard', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(2, 'settings.view', 'admin', 'settings', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(3, 'settings.edit', 'admin', 'settings', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(4, 'permission.view', 'admin', 'permission', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(5, 'permission.create', 'admin', 'permission', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(6, 'permission.edit', 'admin', 'permission', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(7, 'permission.delete', 'admin', 'permission', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(8, 'admin.view', 'admin', 'admin', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(9, 'admin.create', 'admin', 'admin', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(10, 'admin.edit', 'admin', 'admin', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(11, 'admin.delete', 'admin', 'admin', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(12, 'admin_profile.view', 'admin', 'admin_profile', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(13, 'admin_profile.edit', 'admin', 'admin_profile', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(14, 'role.view', 'admin', 'role_manage', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(15, 'role.create', 'admin', 'role_manage', '2021-09-14 15:59:37', '2021-09-14 15:59:37'),
+(16, 'role.edit', 'admin', 'role_manage', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(17, 'role.delete', 'admin', 'role_manage', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(18, 'user.view', 'admin', 'user', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(19, 'user.create', 'admin', 'user', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(20, 'user.edit', 'admin', 'user', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(21, 'user.delete', 'admin', 'user', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(22, 'category.view', 'admin', 'category', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(23, 'category.create', 'admin', 'category', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(24, 'category.edit', 'admin', 'category', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(25, 'category.delete', 'admin', 'category', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(26, 'page.view', 'admin', 'page', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(27, 'page.create', 'admin', 'page', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(28, 'page.edit', 'admin', 'page', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(29, 'page.delete', 'admin', 'page', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(30, 'service.view', 'admin', 'service', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(31, 'service.create', 'admin', 'service', '2021-09-14 15:59:38', '2021-09-14 15:59:38'),
+(32, 'service.edit', 'admin', 'service', '2021-09-14 15:59:39', '2021-09-14 15:59:39'),
+(33, 'service.delete', 'admin', 'service', '2021-09-14 15:59:39', '2021-09-14 15:59:39'),
+(34, 'blog.view', 'admin', 'blog', '2021-09-14 15:59:39', '2021-09-14 15:59:39'),
+(35, 'blog.create', 'admin', 'blog', '2021-09-14 15:59:39', '2021-09-14 15:59:39'),
+(36, 'blog.edit', 'admin', 'blog', '2021-09-14 15:59:39', '2021-09-14 15:59:39'),
+(37, 'blog.delete', 'admin', 'blog', '2021-09-14 15:59:39', '2021-09-14 15:59:39'),
+(38, 'slider.view', 'admin', 'slider', '2021-09-14 15:59:39', '2021-09-14 15:59:39'),
+(39, 'slider.create', 'admin', 'slider', '2021-09-14 15:59:40', '2021-09-14 15:59:40'),
+(40, 'slider.edit', 'admin', 'slider', '2021-09-14 15:59:40', '2021-09-14 15:59:40'),
+(41, 'slider.delete', 'admin', 'slider', '2021-09-14 15:59:40', '2021-09-14 15:59:40'),
+(42, 'tracking.view', 'admin', 'tracking', '2021-09-14 15:59:40', '2021-09-14 15:59:40'),
+(43, 'tracking.delete', 'admin', 'tracking', '2021-09-14 15:59:40', '2021-09-14 15:59:40'),
+(44, 'email_notification.view', 'admin', 'notifications', '2021-09-14 15:59:40', '2021-09-14 15:59:40'),
+(45, 'email_notification.edit', 'admin', 'notifications', '2021-09-14 15:59:40', '2021-09-14 15:59:40'),
+(46, 'email_message.view', 'admin', 'notifications', '2021-09-14 15:59:41', '2021-09-14 15:59:41'),
+(47, 'email_message.edit', 'admin', 'notifications', '2021-09-14 15:59:41', '2021-09-14 15:59:41'),
+(48, 'module.view', 'admin', 'module', '2021-09-14 15:59:41', '2021-09-14 15:59:41'),
+(49, 'module.create', 'admin', 'module', '2021-09-14 15:59:41', '2021-09-14 15:59:41'),
+(50, 'module.edit', 'admin', 'module', '2021-09-14 15:59:41', '2021-09-14 15:59:41'),
+(51, 'module.delete', 'admin', 'module', '2021-09-14 15:59:41', '2021-09-14 15:59:41'),
+(52, 'module.toggle', 'admin', 'module', '2021-09-14 15:59:41', '2021-09-14 15:59:41');
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 4),
@@ -853,29 +604,30 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (45, 4),
 (46, 4),
 (47, 4),
-(48, 4);
+(48, 4),
+(49, 4),
+(50, 4),
+(51, 4),
+(52, 4);
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'Subscriber', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(2, 'Admin', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(3, 'Editor', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27'),
-(4, 'Super Admin', 'admin', '2021-07-10 14:24:27', '2021-07-10 14:24:27');
+(1, 'Subscriber', 'admin', '2021-09-14 15:59:36', '2021-09-14 15:59:36'),
+(2, 'Admin', 'admin', '2021-09-14 15:59:36', '2021-09-14 15:59:36'),
+(3, 'Editor', 'admin', '2021-09-14 15:59:36', '2021-09-14 15:59:36'),
+(4, 'Super Admin', 'admin', '2021-09-14 15:59:37', '2021-09-14 15:59:37');
 
-INSERT INTO `terms` (`id`, `category`, `country`, `language`, `menu`, `content`, `page_id`, `footer`, `key`, `en`, `fi`, `se`, `no`, `dk`, `de`, `it`, `fr`, `es`, `pl`, `al`, `ru`, `ar`, `bn`, `so`, `ku`, `vi`, `cn`, `sr`, `tr`, `order_nr`, `status`, `created_by`, `updated_by`, `deleted_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 4, NULL, NULL, 0, 0, NULL, 0, 'testcategory', 'Test Category', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2021-07-10 14:31:12', '2021-07-10 14:31:12'),
-(2, NULL, NULL, NULL, 0, 1, 1, 0, 'pt1', 'About Us', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2021-07-10 14:59:18', '2021-07-10 14:59:18'),
-(3, NULL, NULL, NULL, 0, 1, 1, 0, 'pd1', '<div>Welcome to our about us page </div>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2021-07-10 14:59:18', '2021-07-10 14:59:18'),
-(4, NULL, NULL, NULL, 0, 1, 1, 0, 'pmd1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2021-07-10 14:59:18', '2021-07-10 14:59:18'),
-(5, NULL, NULL, NULL, 0, 1, 2, 0, 'pt2', 'Contact Us', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2021-07-10 14:59:40', '2021-07-10 14:59:40'),
-(6, NULL, NULL, NULL, 0, 1, 2, 0, 'pd2', '<div>Welcome to our contact us page </div>', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2021-07-10 14:59:40', '2021-07-10 14:59:40'),
-(7, NULL, NULL, NULL, 0, 1, 2, 0, 'pmd2', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, 1, NULL, NULL, NULL, '2021-07-10 14:59:40', '2021-07-10 14:59:40');
+INSERT INTO `services` (`id`, `title`, `slug`, `description`, `meta_description`, `image`, `banner_image`, `category_id`, `status`, `deleted_at`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`) VALUES
+(1, 'Laptop/Macbook Repair', 'laptop-macbook-repair', 'In present day time almost every individual works on the laptop, no matter you are a college student, working professional or a businessman. With technological advancements, there are many new ranges and features of laptops seen coming up on the market, but like any other electronic goods, it too needs maintenance and repair. We brings for you customized solution to repair laptops anytime around the country. Our team has enough experience at the back, and they can help repairing any simple or complex laptop problems at ease.\n                    <br />\n                    We are popular for fast and friendly service, call us anytime, and we will offer laptop services on your doorstep. We are popular because of our customer friendly attitude and quick turnaround time. Apart from that, we offer an affordable solution for all your laptop repairing services. With We, you can find all original and genuine laptop parts and accessories. Our team is reachable around the clock, and we will make sure your device is functioning in quickest possible time.\n                    <br />\n                    Many clients around the country introduce us as \"laptop specialist\" and its all because of our dedication and professional in solving all problems at ease. We are presently reputed and popular laptop repairing and accessories network in the whole of Australia. At We, we make sure that you laptop repairing experience is easy, fast and hassle free. What\'s more interesting about our services is that we have a range of utility, quality and fashionable accessories that makeover and protects your close friend – your laptop.\n                    <br />\n                    Some of our services particularly aimed at for businesses\n                    <br />\n                    <ul>\n                        <li>Desktop support – Maintenance, installation and repair.</li>\n                        <li>Software support including installation, registration and provision.</li>\n                        <li>Hardware support including provision, installation, set up and repair.</li>\n                        <li>Network system set up and configuration.</li>\n                        <li>Application support- Web apps, mobile apps, etc.</li>\n                        <li>Virus prevention, protection and removal.</li>\n                        <li>Server installation and maintenance.</li>\n                        <li>WiFi network system set up.</li>\n                    </ul>', NULL, 'service-laptop-macbook-repair.jpg', 'service-laptop-macbook-repair-banner.jpg', NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43'),
+(2, 'Computer Repair', 'computer-repair', 'We can repair all models and ranges of computers.\n                Call us now, and our team will provide a great solution for desktops, server, computer, smartphone, game accessories and all peripherals such as cameras, scanners, and printers. Our team responds immediately after getting your call; we will make sure your system is back to work in quickest possible time. Our team is available anytime, and we don\'t charge anything extra for nights and weekends. Our computer repairing services are based in Australia, and our geeks are all certified computer repairing professionals.\n                <br />\n                We understand the importance of computer in your life; our experts will make sure that the device is functional in quickest possible time. We assure you of all repairing services; our geeks will reach your home or business location to fix the problem. We provides a full guarantee on work, and we are known in the market for our fast and flawless computer repairing services.\n                <br />\n                Have full trust on We; our team will never let you down.', NULL, 'service-computer-repair.jpg', 'service-computer-repair-banner.jpg', NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43'),
+(3, 'Web Application Development', 'web-application-development', 'Services for your future web or mobile applications.\n                <br />\n\n                Our services focuses on the following things -\n                <ul>\n                    <li>Web application development</li>\n                    <li>Mobile application development</li>\n                    <li>Website Design</li>\n                    <li>Mobile App Design</li>\n                    <li>Management of business IT infrastructure.</li>\n                </ul>\n                ', NULL, 'service-web-application.jpg', 'service-web-application-banner.jpg', NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43'),
+(4, 'Data Backup & Recovery', 'data-backup-recovery', 'We believe in providing the best possible solution for homes as well as businesses. We always believe in meeting the need of our clients and helping them get back to work in quickest possible time. Life is completely dependent on these gadgets these days, and we strive hard to provide an affordable and quality solution for your business and home. All our geeks are skilled and trained to offer top notch services.\n                <br />\n                We believe all important data are stored in computer systems; We will assure you of data recovery, the storage set up and back up in best possible manner. Our customer data recovery and backup services are designed for home and business; call our geeks today to help you provide the best of deals. Our professionals will make sure you lever lose your precious data by backing it up. We takes up every data recovery assignment with utmost proficiency.\n                <br />\n                Here are some of the services on offer with us:\n                <br />\n                We offer data recovery services for all media devices.\n                <br />\n                <ul>\n                    <li>All our data recovery systems are confidential and secure.</li>\n                    <li>We assure you of fastest data recovery services in the country.</li>\n                    <li>Our team uses some of the best and latest technologies for data recovery.</li>\n                    <li>Apart from that our team of geeks will help you by backing up useful files for your home or office.</li>\n                </ul>\n                ', NULL, 'service-data-recovery.jpg', 'service-data-recovery-banner.jpg', NULL, 1, NULL, NULL, NULL, NULL, '2021-09-14 15:59:43', '2021-09-14 15:59:43');
 
 INSERT INTO `tracks` (`id`, `title`, `description`, `reference_link`, `admin_id`, `deleted_at`, `deleted_by`, `created_at`, `updated_at`) VALUES
-(1, 'Test Role', 'New Role has been created', NULL, 1, NULL, NULL, '2021-07-10 14:30:41', '2021-07-10 14:30:41'),
-(2, 'Test Category', 'New Category has been created', NULL, 1, NULL, NULL, '2021-07-10 14:31:12', '2021-07-10 14:31:12'),
-(3, 'testcategory', 'Category has been updated successfully !!', NULL, 1, NULL, NULL, '2021-07-10 14:31:42', '2021-07-10 14:31:42'),
-(4, 'About Us', 'Page has been updated successfully !!', NULL, 1, NULL, NULL, '2021-07-10 14:59:18', '2021-07-10 14:59:18'),
-(5, 'Contact Us', 'Page has been updated successfully !!', NULL, 1, NULL, NULL, '2021-07-10 14:59:40', '2021-07-10 14:59:40');
+(1, 'computer', 'Category has been updated successfully !!', NULL, 1, NULL, NULL, '2021-09-14 17:01:17', '2021-09-14 17:01:17'),
+(2, 'application', 'Category has been updated successfully !!', NULL, 1, NULL, NULL, '2021-09-14 17:01:52', '2021-09-14 17:01:52'),
+(3, 'application-development', 'Category has been updated successfully !!', NULL, 1, NULL, NULL, '2021-09-14 17:02:24', '2021-09-14 17:02:24'),
+(4, 'Other', 'New Category has been created', NULL, 1, NULL, NULL, '2021-09-14 17:02:37', '2021-09-14 17:02:37'),
+(5, 'application-development', 'Category has been updated successfully !!', NULL, 1, NULL, NULL, '2021-09-14 17:02:54', '2021-09-14 17:02:54');
 
 
 
