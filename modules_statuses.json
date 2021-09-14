@@ -1,5 +1,6 @@
 {
     "ThemeBusiness": true,
     "Article": true,
-    "Service": true
+    "Service": true,
+    "Booking": true
 }
