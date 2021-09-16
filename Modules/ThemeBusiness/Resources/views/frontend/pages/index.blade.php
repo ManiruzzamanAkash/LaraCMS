@@ -11,7 +11,7 @@
 
         <div class="container position-relative z-index-1" style="margin-top: -388px;">
             <div class="row align-items-end pb-4 mb-4 mb-lg-5">
-                <div class="col-lg-6 pe-lg-4 mb-5 mb-lg-0">
+                <div class="col-lg-6 pe-lg-4 mb-5 mb-lg-0 pb-5">
                     <div class="card border-0 custom-border-radius-1 box-shadow-1 appear-animation animated fadeInUpShorter appear-animation-visible"
                         data-appear-animation="fadeInUpShorter" data-appear-animation-delay="900"
                         style="animation-delay: 900ms;">
@@ -42,8 +42,10 @@
                                 class="d-flex align-items-center justify-content-end justify-content-lg-end flex-column flex-lg-row font-weight-medium text-4 text-lg-3 text-xl-4">
                                 SCHEDULE AN APPOINTMENT:
                                 <strong class="text-7 mt-2 mt-lg-0 ms-lg-3">
-                                    <a href="tel:+1234567890"
-                                        class="text-color-secondary text-color-hover-primary text-decoration-none">800-123-4567</a>
+                                    <a href="tel:+61297937174"
+                                        class="text-color-secondary text-color-hover-primary text-decoration-none">
+                                        +61 297937174
+                                    </a>
                                 </strong>
                             </span>
                         </li>
@@ -53,7 +55,7 @@
                                 SEND AN EMAIL:
                                 <strong class="text-3 ms-lg-3">
                                     <a href="mailto:mail@domain.com"
-                                        class="text-color-tertiary text-color-hover-primary text-decoration-underline">cleanservice@domain.com</a>
+                                        class="text-color-tertiary text-color-hover-primary text-decoration-underline">jahangir70bd@gmail.com </a>
                                 </strong>
                             </span>
                         </li>
@@ -72,7 +74,7 @@
                         </svg>
                         <h3
                             class="text-transform-none text-color-dark font-weight-bold mb-0 text-4 ps-1 ms-xl-2 mt-3 mt-xl-0">
-                            30/7 Cleaning Services</h3>
+                            30/7 Computer Services</h3>
                     </div>
                 </div>
                 <div class="col-6 col-xl-3 divider-left-border mb-5 mb-xl-0 appear-animation animated fadeInLeftShorter appear-animation-visible"
@@ -85,7 +87,7 @@
                         </svg>
                         <h3
                             class="text-transform-none text-color-dark font-weight-bold mb-0 text-4 px-2 px-sm-0 ps-1 ms-xl-2 mt-3 mt-xl-0">
-                            20+ Years Experience</h3>
+                            5+ Years Experience</h3>
                     </div>
                 </div>
                 <div class="col-6 col-xl-3 divider-left-border appear-animation animated fadeInRightShorter appear-animation-visible"
@@ -195,7 +197,7 @@
                             style="animation-delay: 200ms;">Our Process</h2>
                         <p class="custom-font-secondary text-4 mb-4 appear-animation animated fadeInUpShorter appear-animation-visible"
                             data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400"
-                            style="animation-delay: 400ms;">Get reliable &amp; affordable cleaning services for your
+                            style="animation-delay: 400ms;">Get reliable &amp; affordable Computer services for your
                             facility with a 100% satisfaction guaranteed!</p>
                         <p class="mb-0 appear-animation animated fadeInUpShorter appear-animation-visible"
                             data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600"
@@ -396,7 +398,7 @@
                         <h2 class="text-color-light font-weight-medium text-11 line-height-5 mb-2 appear-animation"
                             data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">High Quality <span
                                 class="font-weight-bold custom-highlight-1 ws-nowrap custom-highlight-1-primary p-2 appear-animation"
-                                data-appear-animation="customHighlightAnim" data-appear-animation-delay="1s">Cleaning
+                                data-appear-animation="customHighlightAnim" data-appear-animation-delay="1s">Computer
                                 Services</span> for all type of facilities</h2>
                         <p class="custom-font-secondary custom-font-size-1 custom-text-color-1 pb-2 mb-4 appear-animation"
                             data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400">Our Staff is trained
