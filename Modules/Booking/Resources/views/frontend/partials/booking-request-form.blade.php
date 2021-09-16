@@ -3,7 +3,8 @@
     $services   = \Modules\Service\Entities\Service::getPageData(['limit' => 20, 'orderBy' => 'asc'])['pages'];
 @endphp
 
-<form class="contact-form custom-form-style-1" method="POST" data-parsley-validate>
+<form class="contact-form custom-form-style-1" action="{{ route('booking.request.store') }}" method="POST" data-parsley-validate>
+    @csrf
     <div class="contact-form-success alert alert-success d-none mt-4">
         <strong>Success!</strong> Your request has been sent to us.
     </div>
