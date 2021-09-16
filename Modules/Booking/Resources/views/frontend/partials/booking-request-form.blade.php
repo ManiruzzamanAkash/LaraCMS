@@ -1,3 +1,8 @@
+@php
+    $categories = \Modules\Article\Entities\Category::getCategories();
+    $services   = \Modules\Service\Entities\Service::getPageData(['limit' => 20, 'orderBy' => 'asc'])['pages'];
+@endphp
+
 <form class="contact-form custom-form-style-1" method="POST" data-parsley-validate>
     <div class="contact-form-success alert alert-success d-none mt-4">
         <strong>Success!</strong> Your request has been sent to us.
@@ -28,23 +33,23 @@
     <div class="row">
         <div class="form-group col-sm-12 col-md-4 pb-1 mb-3">
             <div class="custom-select-1">
-                <label for="service_category">Service Category</label>
-                <select data-msg-required="Please select a service." class="form-control" name="service_category" required>
+                <label for="service_category_id">Service Category</label>
+                <select data-msg-required="Please select a service." class="form-control" name="service_category_id" required>
                     <option value="" selected="">Select Service Category</option>
-                    <option value="Build Services">Building Services</option>
-                    <option value="Post Construction">Post Construction</option>
-                    <option value="Office Cleaning">Office Cleaning</option>
+                    @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
         <div class="form-group col-sm-12 col-md-4 pb-1 mb-3">
             <div class="custom-select-1">
-                <label for="service">Service</label>
-                <select data-msg-required="Please select a service." class="form-control" name="service" required>
+                <label for="service_id">Service</label>
+                <select data-msg-required="Please select a service." class="form-control" name="service_id" required>
                     <option value="" selected="">Select Service</option>
-                    <option value="Build Services">Building Services</option>
-                    <option value="Post Construction">Post Construction</option>
-                    <option value="Office Cleaning">Office Cleaning</option>
+                    @foreach ($services as $service)
+                    <option value="{{ $service->id }}">{{ $service->title }}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
