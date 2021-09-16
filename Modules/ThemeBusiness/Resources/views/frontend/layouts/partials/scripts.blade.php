@@ -17,6 +17,9 @@
 <script src="{{ asset('public/modules/theme-business/js/vendor/jquery.vide.min.js')}}"></script>
 <script src="{{ asset('public/modules/theme-business/js/vendor/vivus.min.js')}}"></script>
 
+{{-- Parsley Validation JS --}}
+<script src="{{ asset('public/assets/common/vendor/parsley/parsley.min.js')}}"></script>
+
 <!-- Theme Base, Components and Settings -->
 <script src="{{ asset('public/modules/theme-business/js/vendor/theme.js')}}"></script>
 

@@ -18,6 +18,9 @@
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/vendor/owl.theme.default.min.css')}}">
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/vendor/magnific-popup.min.css')}}">
 
+{{-- Parsley Validation CSS --}}
+<link rel="stylesheet" href="{{ asset('public/assets/common/vendor/parsley/parsley.css') }}">
+
 <!-- Theme CSS -->
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/vendor/theme.css')}}">
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/vendor/theme-elements.css')}}">
