@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('booking')->group(function() {
-    Route::get('/', 'BookingController@index');
+Route::prefix('booking-request')->group(function () {
+    Route::post('store', 'BookingRequestController@store')->name('booking.request.store');
 });
