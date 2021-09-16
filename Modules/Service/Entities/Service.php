@@ -51,7 +51,6 @@ class Service extends Model
 
         $args = array_merge($defaults, $args);
 
-
         $query = DB::table('services')->where('deleted_at', null);
 
         if (!empty($args['limit'])) {
