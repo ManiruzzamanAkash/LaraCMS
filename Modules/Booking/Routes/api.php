@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/booking', function (Request $request) {
-    return $request->user();
-});
+// Route::prefix('booking-request')->group(function () {
+//     Route::post('store', 'Api\BookingRequestRestAPIController@store')->name('api.booking.request.store');
+// });
