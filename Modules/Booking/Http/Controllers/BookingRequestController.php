@@ -13,8 +13,10 @@ class BookingRequestController extends Controller
     {
         try {
             BookingRequest::store($request->all());
+            session()->flash('success', 'Your request has been sent to authority. An agent will communicate with you soon.');
+            return back();
         } catch (Exception $e) {
-            session()->flash('error', $e->getMessage());
+            session()->flash('sticky_error', $e->getMessage());
         }
     }
 }

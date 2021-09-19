@@ -125,6 +125,9 @@
 
         @include('themebusiness::frontend.pages.partials.home-about')
 
+        {{-- Embedd Messages if any response --}}
+        @include('frontend.layouts.partials.messages')
+
         <section class="section border-0 py-4 m-0">
             <div class="container">
                 <div class="row align-items-end pb-3 mb-5 mb-lg-4">
