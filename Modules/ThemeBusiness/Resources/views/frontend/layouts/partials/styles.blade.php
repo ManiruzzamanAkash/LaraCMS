@@ -21,6 +21,9 @@
 {{-- Parsley Validation CSS --}}
 <link rel="stylesheet" href="{{ asset('public/assets/common/vendor/parsley/parsley.css') }}">
 
+<!-- Noty CSS -->
+<link rel="stylesheet" type="text/css" href="{{ asset('public/assets/common/vendor/noty/noty.min.css') }}">
+
 <!-- Theme CSS -->
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/vendor/theme.css')}}">
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/vendor/theme-elements.css')}}">

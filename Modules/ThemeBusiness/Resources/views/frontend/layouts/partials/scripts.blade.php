@@ -38,3 +38,8 @@
 <a class="scroll-to-top hidden-mobile visible" href="#"></a><i class="fas fa-chevron-up"></i></a>
 
 <script defer="" src="{{ asset('public/modules/theme-business/js/vendor/beacon.min.js')}}" data-cf-beacon="{&quot;rayId&quot;:&quot;66c7b7818837d9d4&quot;,&quot;version&quot;:&quot;2021.6.0&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;03fa3b9eb60b49789931c4694c153f9b&quot;,&quot;si&quot;:10}"></script>
+
+<!-- Noty JS -->
+<script src="{{ asset('public/assets/common/vendor/noty/noty.min.js') }}"></script>
+
+@include('frontend.layouts.partials.flash-messages')
