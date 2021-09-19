@@ -16,10 +16,25 @@ class RolePermissionsTableSeeder extends Seeder
     public function run()
     {
 
-        Role::create(['guard_name' => 'admin', 'name' => 'Subscriber']);
-        Role::create(['guard_name' => 'admin', 'name' => 'Admin']);
-        Role::create(['guard_name' => 'admin', 'name' => 'Editor']);
-        $roleSuperAdmin = Role::create(['guard_name' => 'admin', 'name' => 'Super Admin']);
+        $roleSubscriber = Role::where('guard_name', 'admin')->where('name', 'Subscriber')->first();
+        if (empty($roleSubscriber)) {
+            $roleSubscriber = Role::create(['guard_name' => 'admin', 'name' => 'Subscriber']);
+        }
+
+        $roleAdmin = Role::where('guard_name', 'admin')->where('name', 'Admin')->first();
+        if (empty($roleAdmin)) {
+            $roleAdmin = Role::create(['guard_name' => 'admin', 'name' => 'Admin']);
+        }
+
+        $roleEditor = Role::where('guard_name', 'admin')->where('name', 'Editor')->first();
+        if (empty($roleEditor)) {
+            $roleEditor = Role::create(['guard_name' => 'admin', 'name' => 'Editor']);
+        }
+
+        $roleSuperAdmin = Role::where('guard_name', 'admin')->where('name', 'Super Admin')->first();
+        if (empty($roleSuperAdmin)) {
+            $roleSuperAdmin = Role::create(['guard_name' => 'admin', 'name' => 'Super Admin']);
+        }
 
         /**
          * @var array Admin User Permissions group wise
@@ -88,6 +103,12 @@ class RolePermissionsTableSeeder extends Seeder
                 'service.delete',
             ],
 
+            'booking_request' => [
+                'booking_request.view',
+                'booking_request.edit',
+                'booking_request.delete',
+            ],
+
             'blog' => [
                 'blog.view',
                 'blog.create',
@@ -126,11 +147,16 @@ class RolePermissionsTableSeeder extends Seeder
         // Assign group wise permissions
         foreach ($permissionGroups as $groupKey => $permissionGroup) {
             foreach ($permissionGroup as $permissionName) {
-                $permission = Permission::create([
-                    'guard_name' => 'admin',
-                    'group_name' => $groupKey,
-                    'name'       => $permissionName
-                ]);
+
+                $permission = Permission::where('guard_name', 'admin')->where('group_name', $groupKey)->where('name', $permissionName)->first();
+                
+                if (empty($permission)) {
+                    $permission = Permission::create([
+                        'guard_name' => 'admin',
+                        'group_name' => $groupKey,
+                        'name'       => $permissionName
+                    ]);
+                }
 
                 $roleSuperAdmin->givePermissionTo($permission);
                 $permission->assignRole($roleSuperAdmin);
