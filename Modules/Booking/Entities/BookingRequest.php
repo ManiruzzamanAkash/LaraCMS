@@ -17,10 +17,12 @@ class BookingRequest extends Model
         'email',
         'phone_no',
         'service_category_id',
+        'service_category_name',
         'service_id',
+        'service_name',
         'start_date',
         'start_time',
-        'message',
+        'message'
     ];
 
     /**
@@ -48,25 +50,29 @@ class BookingRequest extends Model
     public static function store($data = [])
     {
         // Check if service category exists
-        if (empty(Category::find($data['service_category_id']))) {
+        $category = Category::find($data['service_category_id']);
+        if (empty($category)) {
             throw new Exception("Please give valid service category.");
         }
 
         // Check if service exists
-        if (empty(Service::find($data['service_id']))) {
-            throw new Exception("Please give valid service.");
+        $service = Service::find($data['service_id']);
+        if (empty($service)) {
+            throw new Exception("Please select a valid service.");
         }
 
         try {
             $processed_data = [
-                'name'                => $data['name'],
-                'email'               => $data['email'],
-                'phone_no'            => $data['phone_no'],
-                'service_category_id' => $data['service_category_id'],
-                'service_id'          => $data['service_id'],
-                'start_date'          => $data['start_date'],
-                'start_time'          => $data['start_time'],
-                'message'             => $data['message'],
+                'name'                  => $data['name'],
+                'email'                 => $data['email'],
+                'phone_no'              => $data['phone_no'],
+                'service_category_id'   => $category->id,
+                'service_category_name' => $category->name,
+                'service_id'            => $service->id,
+                'service_name'          => $service->title,
+                'start_date'            => $data['start_date'],
+                'start_time'            => $data['start_time'],
+                'message'               => $data['message']
             ];
 
             return BookingRequest::create($processed_data);

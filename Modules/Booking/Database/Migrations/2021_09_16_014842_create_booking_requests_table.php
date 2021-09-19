@@ -19,7 +19,9 @@ class CreateBookingRequestsTable extends Migration
             $table->string('phone_no', 20);
             $table->string('email', 100);
             $table->unsignedBigInteger('service_id')->index();
+            $table->string('service_name', 100);
             $table->unsignedBigInteger('service_category_id')->index();
+            $table->string('service_category_name', 100);
             $table->date('start_date');
             $table->time('start_time');
             $table->text('message')->nullable();
