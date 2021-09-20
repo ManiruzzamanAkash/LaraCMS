@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use Modules\Article\Entities\Category;
-use App\Models\Term;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
