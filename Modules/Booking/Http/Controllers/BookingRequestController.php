@@ -110,13 +110,13 @@ class BookingRequestController extends Controller
                 ->editColumn('status', function ($row) {
                     $statusText = ucwords($row->status);
                     if ($row->status === 'pending') {
-                        return '<span class="badge badge-warning font-weight-100">'.$statusText.'</span>';
+                        return '<span class="badge badge-warning font-weight-100">' . $statusText . '</span>';
                     } else if ($row->status === 'completed') {
-                        return '<span class="badge badge-success">'.$statusText.'</span>';
-                    }  else if ($row->status === 'cancelled') {
-                        return '<span class="badge badge-danger">'.$statusText.'</span>';
+                        return '<span class="badge badge-success">' . $statusText . '</span>';
+                    } else if ($row->status === 'cancelled') {
+                        return '<span class="badge badge-danger">' . $statusText . '</span>';
                     } else {
-                        return '<span class="badge badge-info">'.$statusText.'</span>';
+                        return '<span class="badge badge-info">' . $statusText . '</span>';
                     }
                 });
 
@@ -143,8 +143,14 @@ class BookingRequestController extends Controller
     public function store(BookingFormRequest $request)
     {
         try {
-            BookingRequest::store($request->all());
-            session()->flash('success', 'Your request has been sent to authority. An agent will communicate with you soon.');
+            $booking_request = BookingRequest::store($request->all());
+
+            if (!empty($booking_request)) {
+                session()->flash('success', 'Your request has been sent to authority. An agent will communicate with you soon.');
+                return redirect()->route('demo.business.booking_request.create.billing', $booking_request->id);
+            }
+
+            session()->flash('error', 'Something went wrong creating booking request. Please try again.');
             return back();
         } catch (Exception $e) {
             session()->flash('error', $e->getMessage());
@@ -158,12 +164,26 @@ class BookingRequestController extends Controller
      */
     public function create()
     {
-        if (is_null($this->user) || !$this->user->can('booking_request.edit')) {
-            $message = 'You are not allowed to access this page !';
-            return view('errors.403', compact('message'));
+        return view('booking::frontend.pages/booking-request');
+    }
+
+    /**
+     * Show the form for creating billing address for the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createBilling($booking_request_id)
+    {
+        $booking_request = BookingRequest::find(intval($booking_request_id));
+
+        if (empty($booking_request)) {
+            session()->flash('error', 'Sorry ! Request could not be found.');
+            return back();
         }
 
-        return view('booking::frontend.pages/booking-request');
+        $service = $booking_request->service;
+
+        return view('booking::frontend.pages.booking-request-billing', compact('booking_request', 'service'));
     }
 
     /**
