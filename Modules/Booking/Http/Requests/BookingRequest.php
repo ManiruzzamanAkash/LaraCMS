@@ -20,6 +20,7 @@ class BookingRequest extends FormRequest
             'start_date'          => 'required|date',
             'start_time'          => 'required|string',
             'service_category_id' => 'required|numeric',
+            'booking_rate_id'     => 'required|numeric',
             'service_id'          => 'required|numeric',
             'message'             => 'nullable|string'
         ];
