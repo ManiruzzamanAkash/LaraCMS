@@ -1,0 +1,119 @@
+:root {
+    --color-primary: #ed1c24;
+    --color-primary-light: #ff656a;
+    --color-primary-dark: #be1e2d;
+}
+
+a {
+    color: var(--color-primary);
+}
+
+html .bg-color-tertiary,
+html .bg-tertiary {
+    background-color: var(--color-primary-light) !important;
+}
+
+html .btn-primary {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary-light);
+}
+
+html .text-color-primary,
+html .text-primary {
+    color: var(--color-primary) !important;
+}
+
+html .bg-color-secondary,
+html .bg-secondary {
+    background-color: var(--color-primary-dark) !important;
+}
+
+/* Header Start */
+html .text-color-tertiary,
+html .text-tertiary {
+    color: var(--color-primary) !important;
+}
+
+html .bg-color-primary,
+html .bg-primary {
+    background-color: var(--color-primary-light) !important;
+}
+
+html .btn-primary:hover,
+html .btn-primary.hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+html .overlay-color-tertiary:not(.no-skin):before {
+    background-color: var(--color-primary-light) !important;
+}
+
+#header .header-btn-collapse-nav {
+    background: var(--color-primary);
+}
+
+@media (max-width: 991px) {
+    #header .header-nav-main:not(.header-nav-main-mobile-dark) nav>ul>li>a.active {
+        background: var(--color-primary);
+    }
+
+    #header .header-nav-main:not(.header-nav-main-mobile-dark) nav>ul>li>a {
+        color: var(--color-primary);
+    }
+}
+
+@media (min-width: 992px) {
+    #header .header-nav.header-nav-links nav>ul:not(:hover)>li>a.active {
+        color: var(--color-primary);
+    }
+
+    #header .header-nav-main nav>ul:not(:hover)>li>a.active {
+        background-color: var(--color-primary);
+    }
+
+    #header .header-nav.header-nav-links nav>ul li:hover>a {
+        color: var(--color-primary);
+    }
+}
+
+/* Header End */
+
+/* Body Start */
+.custom-social-icons li a {
+    background: var(--color-primary-dark);
+}
+
+.testimonial blockquote {
+    background: var(--color-primary-dark) !important;
+}
+
+
+.custom-card-style-1:hover {
+    border-color: var(--color-primary) !important;
+}
+
+.custom-card-style-1:hover .custom-card-style-1-title {
+    color: var(--color-primary) !important;
+}
+
+.custom-line {
+    border-bottom-color: var(--color-primary) !important;
+}
+
+.custom-accordion-style-1>.card .card-header a {
+    background-color: var(--color-primary-light) !important;
+    color: #fff !important;
+}
+
+.custom-accordion-style-1>.card .card-header a {
+    background-color: var(--color-primary-light);
+}
+
+/* Body End */
+
+/* Footer Start */
+/* Footer End */
+
+/* Page Start */
+/* Page End */
