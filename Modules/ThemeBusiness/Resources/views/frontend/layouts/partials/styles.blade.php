@@ -45,3 +45,6 @@
 
 {{-- Red Theme CSS --}}
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/theme/theme-red.css')}}">
+
+{{-- Any Custom style include in the `styles` blade section --}}
+@yield('styles')

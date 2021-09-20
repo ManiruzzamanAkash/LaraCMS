@@ -43,3 +43,6 @@
 <script src="{{ asset('public/assets/common/vendor/noty/noty.min.js') }}"></script>
 
 @include('frontend.layouts.partials.flash-messages')
+
+{{-- Any Custom script include in the `scripts` blade section --}}
+@yield('scripts')
