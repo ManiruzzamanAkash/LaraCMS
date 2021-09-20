@@ -22,10 +22,14 @@ class CreateBookingRequestsTable extends Migration
             $table->string('service_name', 100);
             $table->unsignedBigInteger('service_category_id')->index();
             $table->string('service_category_name', 100);
+            $table->unsignedBigInteger('booking_rate_id')->index();
+            $table->string('booking_rate_name', 100);
+            $table->unsignedFloat('booking_rate_value', 8, 2)->default(0);
             $table->date('start_date');
             $table->time('start_time');
             $table->text('message')->nullable();
             $table->string('status')->index()->default('pending');
+            $table->dateTime('expired_at')->nullable();
             $table->timestamps();
         });
     }
