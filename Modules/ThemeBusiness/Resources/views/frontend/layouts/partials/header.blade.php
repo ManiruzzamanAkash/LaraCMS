@@ -21,10 +21,10 @@
                                         <li><a href="{{ route('demo.business.index') }}" class="nav-link {{ Route::is('demo.business.index') ? 'active current-page-active' : '' }}">Home</a></li>
                                         <li><a href="{{ route('demo.business.about') }}" class="nav-link {{ Route::is('demo.business.about') ? 'active current-page-active' : '' }}">About</a></li>
                                         <li><a href="{{ route('demo.business.service') }}" class="nav-link {{ Route::is('demo.business.service') ? 'active current-page-active' : '' }}">Services</a></li>
-                                        <!-- <li><a href="{{ route('demo.business.portfolio') }}" class="nav-link">Portfolio</a></li> -->
-                                        <li><a href="{{ route('demo.business.price') }}" class="nav-link {{ Route::is('demo.business.prices') ? 'active current-page-active' : '' }}">Prices</a></li>
-                                        <!-- <li><a href="{{ route('demo.business.blog') }}" class="nav-link">Blog</a></li> -->
                                         <li><a href="{{ route('demo.business.contact') }}" class="nav-link {{ Route::is('demo.business.contact') ? 'active current-page-active' : '' }}">Contact</a></li>
+                                        <!-- <li><a href="{{ route('demo.business.portfolio') }}" class="nav-link">Portfolio</a></li> -->
+                                        <li><a href="{{ route('demo.business.booking_request.create') }}" class="nav-link {{ Route::is('demo.business.booking_request.create') ? 'active current-page-active' : '' }}">Request Now</a></li>
+                                        <!-- <li><a href="{{ route('demo.business.blog') }}" class="nav-link">Blog</a></li> -->
                                     </ul>
                                 </nav>
                             </div>
