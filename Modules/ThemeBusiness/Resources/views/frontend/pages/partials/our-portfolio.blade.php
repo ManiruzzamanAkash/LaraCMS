@@ -16,7 +16,7 @@
             <div class="col-lg-5 col-xl-4">
                 <div class="d-flex justify-content-lg-end">
                     <a href="/-portfolio.html" class="btn btn-primary btn-modern font-weight-bold text-3 btn-px-4 py-3 appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800" style="animation-delay: 1800ms;">VIEW ALL PORTFOLIO</a>
-                    <a href="/-contact.html" class="btn btn-secondary btn-modern font-weight-bold text-3 btn-px-4 py-3 ms-4 appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1600" style="animation-delay: 1600ms;">BOOK NOW</a>
+                    <a href="{{ route('demo.business.booking_request.create') }}" class="btn btn-secondary btn-modern font-weight-bold text-3 btn-px-4 py-3 ms-4 appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1600" style="animation-delay: 1600ms;">BOOK NOW</a>
                 </div>
             </div>
         </div>

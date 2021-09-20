@@ -28,10 +28,9 @@
                                 </ul>
                             </p>
 
-                            <button type="submit" class="btn btn-primary btn-modern font-weight-bold text-3 px-5 py-3"
-                                data-loading-text="Loading..." data-bs-toggle="modal" data-bs-target="#bookingServiceModal">
+                            <a href="{{ route('demo.business.booking_request.create') }}" class="btn btn-primary btn-modern font-weight-bold text-3 px-5 py-3">
                                 Book a Service Now
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -120,9 +119,6 @@
             </div>
         </div>
 
-        {{-- Add Booking Modal From Booking Module --}}
-        @include('booking::frontend.partials.booking-modal')
-
         @include('themebusiness::frontend.pages.partials.home-about')
 
         {{-- Embedd Messages if any response --}}
@@ -155,7 +151,7 @@
                                 class="btn btn-primary btn-modern font-weight-bold text-3 btn-px-4 py-3 appear-animation animated fadeInLeftShorter appear-animation-visible"
                                 data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1800"
                                 style="animation-delay: 1800ms;">VIEW ALL SERVICES</a>
-                            <a href=""
+                            <a href="{{ route('demo.business.booking_request.create') }}"
                                 class="btn btn-secondary btn-modern font-weight-bold text-3 btn-px-4 py-3 ms-4 appear-animation animated fadeInLeftShorter appear-animation-visible"
                                 data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1600"
                                 style="animation-delay: 1600ms;">BOOK NOW</a>
@@ -202,11 +198,6 @@
                             data-appear-animation="fadeInUpShorter" data-appear-animation-delay="400"
                             style="animation-delay: 400ms;">Get reliable &amp; affordable Computer services for your
                             facility with a 100% satisfaction guaranteed!</p>
-                        <p class="mb-0 appear-animation animated fadeInUpShorter appear-animation-visible"
-                            data-appear-animation="fadeInUpShorter" data-appear-animation-delay="600"
-                            style="animation-delay: 600ms;">Cras a elit sit amet leo accumsan volutpat. Suspendisse
-                            hendrerit vehicula leo, vel efficitur felis ultrices non. Integer aliquet ullamcorper dolor,
-                            quis sollicitudin.</p>
                     </div>
                 </div>
                 <div class="featured-boxes featured-boxes-style-4 custom-featured-boxes-style-1">
@@ -222,8 +213,7 @@
                                     </div>
                                     <h3 class="text-transform-none font-weight-bold custom-font-size-1 mb-3">Book Online
                                     </h3>
-                                    <p class="px-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                                        viverra erat orci, ac auctor.</p>
+                                    <p class="px-3 mb-0">Request a service in online and finish your work without manual interaction</p>
                                 </div>
                             </div>
                         </div>
@@ -236,9 +226,10 @@
                                         <img src="{{ asset('public/modules/theme-business/images/common/icon-2.png') }}"
                                             class="img-fluid icon-featured" alt="">
                                     </div>
-                                    <h3 class="text-transform-none font-weight-bold custom-font-size-1 mb-3">We Clean</h3>
-                                    <p class="px-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                                        viverra erat orci, ac auctor.</p>
+                                    <h3 class="text-transform-none font-weight-bold custom-font-size-1 mb-3">
+                                        We Come to your Door
+                                    </h3>
+                                    <p class="px-3 mb-0"> We Come to your Door and give you best solution ever... </p>
                                 </div>
                             </div>
                         </div>
@@ -252,8 +243,7 @@
                                             class="img-fluid icon-featured" alt="">
                                     </div>
                                     <h3 class="text-transform-none font-weight-bold custom-font-size-1 mb-3">You Relax</h3>
-                                    <p class="px-3 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                                        viverra erat orci, ac auctor.</p>
+                                    <p class="px-3 mb-0">We'll finish your door in just right times...</p>
                                 </div>
                             </div>
                         </div>

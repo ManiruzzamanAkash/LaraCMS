@@ -42,3 +42,6 @@
 
 <!-- Theme main CSS -->
 <link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/main.css')}}">
+
+{{-- Red Theme CSS --}}
+<link rel="stylesheet" href="{{ asset('public/modules/theme-business/css/theme/theme-red.css')}}">

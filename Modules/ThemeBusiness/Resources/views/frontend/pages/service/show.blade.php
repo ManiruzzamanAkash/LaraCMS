@@ -39,9 +39,9 @@ Home | {{ config('app.name') }}
                     {!! $service->description !!}
                 </div>
                 <div class="text-center mt-3">
-                    <button type="button" class="btn btn-primary btn-modern font-weight-bold text-3 px-5 py-3" data-loading-text="Loading...">
+                    <a href="{{ route('demo.business.booking_request.create') }}?id={{ $service->id }}" class="btn btn-primary btn-modern font-weight-bold text-3 px-5 py-3" data-loading-text="Loading...">
                         Book Now
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

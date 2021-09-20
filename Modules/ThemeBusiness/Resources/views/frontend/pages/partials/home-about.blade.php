@@ -18,15 +18,16 @@
                     </div>
                 </div>
                 <h3 class="text-color-secondary font-weight-bold text-transform-none line-height-2 text-10 mb-4 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200" style="animation-delay: 1200ms;">
-                    Home and Commercial<br>
-                    <span class="text-1 d-block">Cleaning Done Right Away</span>
+                    Computer Hardware<br>
+                    <span class="text-1 d-block">Services Done Right Away</span>
                 </h3>
-                <p class="custom-font-secondary text-4 mb-4 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400" style="animation-delay: 1400ms;">Get reliable &amp; affordable cleaning services for your
-                    facility with a 100% satisfaction guaranteed!</p>
-                <p class="pb-1 mb-3 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600" style="animation-delay: 1600ms;">Cras a elit sit amet leo accumsan volutpat. Suspendisse
-                    hendrerit vehicula leo, vel efficitur felis ultrices non. Integer aliquet ullamcorper dolor,
-                    quis sollicitudin.</p>
-                <a href="/-about.html" class="btn btn-primary btn-modern font-weight-bold text-3 px-5 py-3 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1800" style="animation-delay: 1800ms;">VIEW MORE</a>
+                <p class="custom-font-secondary text-4 mb-4 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400" style="animation-delay: 1400ms;">
+                    Get reliable &amp; affordable computer hardware services for your facility with a 100% satisfaction guaranteed!
+                </p>
+                <p class="pb-1 mb-3 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600" style="animation-delay: 1600ms;">
+                    We offer you the greatest computer hardware services inside your area. Just few steps to connect with us...
+                </p>
+                <a href="{{ route('demo.business.about') }}" class="btn btn-primary btn-modern font-weight-bold text-3 px-5 py-3 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1800" style="animation-delay: 1800ms;">VIEW MORE</a>
             </div>
             <div class="col-sm-10 col-lg-6 offset-sm-1 ps-sm-5 ps-lg-0">
                 <div class="position-relative">
@@ -35,7 +36,7 @@
                     </div>
                     <div class="position-absolute top-50pct left-50pct transform3dxy-n50" style="left: 25%;">
                         <div data-plugin-float-element="" data-plugin-options="{&#39;startPos&#39;: &#39;top&#39;, &#39;speed&#39;: 0.3, &#39;transition&#39;: true, &#39;transitionDuration&#39;: 1000, &#39;isInsideSVG&#39;: true}" style="top: 0px; transition: transform 1000ms ease-out 0ms; transform: translate3d(0px, -4.47016%, 0px);">
-                            <img src="{{ asset('public/modules/theme-business/images/common/generic-1.jpg') }}" class="img-fluid rounded-circle custom-box-shadow-1 appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1400" alt="" style="animation-delay: 1400ms;">
+                            <img src="{{ asset('public/modules/theme-business/images/common/service-hardware-1.jpg') }}" class="img-fluid rounded-circle custom-box-shadow-1 appear-animation animated fadeInLeftShorter appear-animation-visible" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1400" alt="" style="animation-delay: 1400ms;height: 400px;">
                         </div>
                     </div>
                 </div>
