@@ -30,4 +30,5 @@ Route::group(['prefix' => 'demo/business', 'as' => 'demo.business.'], function (
     Route::get( '/contact', [ FrontPagesController::class, 'contact' ] )->name( 'contact' );
 
     Route::get( '/booking-request', [ BookingRequestController::class, 'create' ] )->name( 'booking_request.create' );
+    Route::get( '/booking-request/{request_id}/billing', [ BookingRequestController::class, 'createBilling' ] )->name( 'booking_request.create.billing' );
 });
