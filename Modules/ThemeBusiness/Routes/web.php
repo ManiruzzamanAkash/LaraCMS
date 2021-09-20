@@ -11,6 +11,7 @@
 |
 */
 
+use Modules\Booking\Http\Controllers\BookingRequestController;
 use Modules\ThemeBusiness\Http\Controllers\FrontPagesController;
 use Modules\ThemeBusiness\Http\Controllers\ServicePagesController;
 
@@ -27,4 +28,6 @@ Route::group(['prefix' => 'demo/business', 'as' => 'demo.business.'], function (
     Route::get( '/price', [ FrontPagesController::class, 'price' ] )->name( 'price' );
     Route::get( '/portfolio', [ FrontPagesController::class, 'portfolio' ] )->name( 'portfolio' );
     Route::get( '/contact', [ FrontPagesController::class, 'contact' ] )->name( 'contact' );
+
+    Route::get( '/booking-request', [ BookingRequestController::class, 'create' ] )->name( 'booking_request.create' );
 });

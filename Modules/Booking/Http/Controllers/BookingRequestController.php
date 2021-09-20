@@ -152,6 +152,21 @@ class BookingRequestController extends Controller
     }
 
     /**
+     * Show the form for creating the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        if (is_null($this->user) || !$this->user->can('booking_request.edit')) {
+            $message = 'You are not allowed to access this page !';
+            return view('errors.403', compact('message'));
+        }
+
+        return view('booking::frontend.pages/booking-request');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
