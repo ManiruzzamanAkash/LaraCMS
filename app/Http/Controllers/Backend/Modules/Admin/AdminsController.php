@@ -67,14 +67,14 @@ class AdminsController extends Controller
 
                         if ($row->deleted_at === null) {
                             $deleteRoute =  route('admin.admins.destroy', [$row->id]);
-                            if($this->user->can('user.edit')) {
+                            if ($this->user->can('user.edit')) {
                                 $html .= '<a class="btn waves-effect waves-light btn-success btn-sm btn-circle" title="Edit Admin Details" href="' . route('admin.admins.edit', $row->id) . '"><i class="fa fa-edit"></i></a>';
                             }
-                            if($this->user->can('user.delete')) {
+                            if ($this->user->can('user.delete')) {
                                 $html .= '<a class="btn waves-effect waves-light btn-danger btn-sm btn-circle ml-2 text-white" title="Delete Admin" id="deleteItem' . $row->id . '"><i class="fa fa-trash"></i></a>';
                             }
                         } else {
-                            if($this->user->can('user.delete')) {
+                            if ($this->user->can('user.delete')) {
                                 $deleteRoute =  route('admin.admins.trashed.destroy', [$row->id]);
                                 $revertRoute = route('admin.admins.trashed.revert', [$row->id]);
 
@@ -89,7 +89,7 @@ class AdminsController extends Controller
                             }
                         }
 
-                        if($this->user->can('user.delete')) {
+                        if ($this->user->can('user.delete')) {
                             $html .= '<script>
                                 $("#deleteItem' . $row->id . '").click(function(){
                                     swal.fire({ title: "Are you sure?",text: "Admin will be deleted as trashed !",type: "warning",showCancelButton: true,confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!"
@@ -181,7 +181,8 @@ class AdminsController extends Controller
 
         $roles = DB::table('roles')->get();
         $languages = DB::table('languages')->get();
-        return view('backend.pages.admins.create', compact('roles', 'languages'));
+        $social_links = Admin::socialLinks();
+        return view('backend.pages.admins.create', compact('roles', 'languages', 'social_links'));
     }
 
     /**
@@ -219,6 +220,9 @@ class AdminsController extends Controller
             $admin->email = $request->email;
             $admin->password = Hash::make($request->password);
             $admin->status = $request->status;
+            $admin->visible_in_team = $request->visible_in_team;
+            $admin->designation = $request->designation;
+            $admin->social_links = json_encode($request->social_links);
             $admin->created_at = Carbon::now();
             $admin->created_by = Auth::id();
             $admin->updated_at = Carbon::now();
@@ -271,7 +275,8 @@ class AdminsController extends Controller
         $admin = Admin::find($id);
         $roles = DB::table('roles')->get();
         $languages = DB::table('languages')->get();
-        return view('backend.pages.admins.edit', compact('roles', 'admin', 'languages'));
+        $social_links = Admin::socialLinks();
+        return view('backend.pages.admins.edit', compact('roles', 'admin', 'languages', 'social_links'));
     }
 
 
@@ -303,7 +308,7 @@ class AdminsController extends Controller
             }
         }
 
-        $admin = Admin::find( $id );
+        $admin = Admin::find($id);
 
         if (is_null($admin)) {
             session()->flash('error', "The page is not found !");
@@ -334,16 +339,19 @@ class AdminsController extends Controller
                 $admin->avatar   = UploadHelper::update('avatar', $request->avatar, $request->username, 'public/assets/images/admins', $admin->avatar);
             }
 
-            $admin->status      = $request->status;
-            $admin->updated_by  = Auth  ::guard('web')->id();
-            $admin->updated_at  = Carbon::now();
+            $admin->status          = $request->status;
+            $admin->visible_in_team = $request->visible_in_team;
+            $admin->designation     = $request->designation;
+            $admin->social_links    = json_encode($request->social_links);
+            $admin->updated_by      = auth()->user()->id;
+            $admin->updated_at      = Carbon::now();
             $admin->save();
 
-            if ( ! $isProfileUpdate ) {
+            if (!$isProfileUpdate) {
                 // Detach roles and Assign Roles
                 $admin->roles()->detach();
 
-                if ( ! is_null( $request->roles ) ) {
+                if (!is_null($request->roles)) {
                     foreach ($request->roles as $role) {
                         $admin->assignRole($role);
                     }

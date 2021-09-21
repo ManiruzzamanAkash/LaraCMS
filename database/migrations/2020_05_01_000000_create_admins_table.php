@@ -24,6 +24,9 @@ class CreateAdminsTable extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->boolean('status')->default(0)->comment('1=active, 0=inactive');
+            $table->boolean('visible_in_team')->default(0);
+            $table->string('designation', 100)->nullable();
+            $table->text('social_links')->nullable();
             $table->rememberToken();
 
             $table->softDeletes('deleted_at', 0);

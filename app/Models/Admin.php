@@ -22,8 +22,36 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'username', 'email', 'phone_no', 'password', 'avatar', 'status', 'deleted_by', 'language_id'
+        'first_name',
+        'last_name',
+        'username',
+        'email',
+        'phone_no',
+        'password',
+        'avatar',
+        'status',
+        'visible_in_team',
+        'designation',
+        'social_links',
+        'deleted_by',
+        'language_id'
     ];
+
+    /**
+     * Get Social Links
+     *
+     * @return array
+     */
+    public static function socialLinks()
+    {
+        return [
+            'facebook'  => 'Facebook',
+            'twitter'   => 'Twitter',
+            'linkedin'  => 'LinkedIn',
+            'instagram' => 'Instagram',
+            'youtube'   => 'Youtube'
+        ];
+    }
 
     /**
      * The attributes that should be hidden for arrays.
