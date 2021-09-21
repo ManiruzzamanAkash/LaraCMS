@@ -40,15 +40,21 @@ class BookingRequestController extends Controller
         if (request()->ajax()) {
             $status = empty(request()->status) ? 'pending' : request()->status;
 
-            if ($isTrashed) {
-                $booking_requests = BookingRequest::orderBy('id', 'desc')
-                    ->where('status', $status)
-                    ->get();
-            } else {
-                $booking_requests = BookingRequest::orderBy('id', 'desc')
-                    ->where('status', $status)
-                    ->get();
-            }
+            $booking_requests = BookingRequest::orderBy('id', 'desc')
+                ->join('billing_information', 'billing_information.booking_request_id', '=', 'booking_requests.id')
+                ->where('status', $status)
+                ->select(
+                    'booking_requests.id',
+                    'booking_requests.name',
+                    'booking_requests.email',
+                    'booking_requests.phone_no',
+                    'booking_requests.service_name',
+                    'booking_requests.start_date',
+                    'booking_requests.status',
+                    'billing_information.payment_status',
+                    'billing_information.grand_total'
+                )
+                ->get();
 
             $datatable = DataTables::of($booking_requests, $isTrashed)
                 ->addIndexColumn()
@@ -120,9 +126,24 @@ class BookingRequestController extends Controller
                     } else {
                         return '<span class="badge badge-info">' . $statusText . '</span>';
                     }
+                })
+                ->editColumn('payment_status', function ($row) {
+                    $statusText = ucwords($row->payment_status);
+                    if ($row->payment_status === 'pending') {
+                        return '<span class="badge badge-warning font-weight-100">' . $statusText . '</span>';
+                    } else if ($row->payment_status === 'paid') {
+                        return '<span class="badge badge-success">' . $statusText . '</span>';
+                    } else if ($row->payment_status === 'cancelled') {
+                        return '<span class="badge badge-danger">' . $statusText . '</span>';
+                    } else {
+                        return '<span class="badge badge-info">' . $statusText . '</span>';
+                    }
+                })
+                ->editColumn('grand_total', function ($row) {
+                    return "<span class='text-danger text-bold'>$row->grand_total $</span>";
                 });
 
-            $rawColumns = ['name', 'email', 'phone_no', 'service_name', 'start_date', 'status', 'action'];
+            $rawColumns = ['name', 'email', 'phone_no', 'service_name', 'start_date', 'status', 'payment_status', 'grand_total', 'action'];
 
             return $datatable->rawColumns($rawColumns)->make(true);
         }

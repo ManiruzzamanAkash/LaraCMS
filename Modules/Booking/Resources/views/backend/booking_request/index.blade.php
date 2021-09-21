@@ -19,7 +19,9 @@
                         <th>Phone</th>
                         <th>Service Name</th>
                         <th>Service Request Date/Time</th>
-                        <th>Status</th>
+                        <th>Request Status</th>
+                        <th>Payment Status</th>
+                        <th>Paid Amount</th>
                         <th width="100">Action</th>
                     </tr>
                 </thead>
@@ -47,6 +49,8 @@
             {data: 'service_name', name: 'service_name'},
             {data: 'start_date', name: 'start_date'},
             {data: 'status', name: 'status'},
+            {data: 'payment_status', name: 'payment_status'},
+            {data: 'grand_total', name: 'grand_total'},
             {data: 'action', name: 'action'}
         ]
     });

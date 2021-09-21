@@ -78,9 +78,9 @@ $hours      = \Modules\Booking\Entities\BookingRequest::getServiceHours();
             </div>
             <div class="row">
                 <div class="form-group col-sm-12 col-md-12 pb-1 mb-3">
-                    <label for="message">Additional Message</label>
+                    <label for="billing_message">Additional Message</label>
                     <textarea data-msg-required="Please enter your additional message (if any)" class="form-control"
-                        id="message" name="message" placeholder="Enter your message (if any)"></textarea>
+                        id="billing_message" name="billing_message" placeholder="Enter your message (if any)"></textarea>
                 </div>
             </div>
         </div>
