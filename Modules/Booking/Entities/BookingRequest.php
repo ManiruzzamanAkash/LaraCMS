@@ -86,6 +86,16 @@ class BookingRequest extends Model
     }
 
     /**
+     * Billing Related to Booking Request
+     *
+     * @return object|null
+     */
+    public function billing()
+    {
+        return $this->hasOne(BillingInformation::class, 'booking_request_id', 'id');
+    }
+
+    /**
      * Create New Booking Request
      *
      * @param array $data
