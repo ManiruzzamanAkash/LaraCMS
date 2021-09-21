@@ -3,7 +3,7 @@
 <!-- Top Show Data of Categorie List Page -->
 <!-- ============================================================== -->
 <div class="row mt-1">
-    <div class="col-md-4 col-lg-2 col-xlg-2 pointer" onclick="location.href='{{ route('admin.booking_request.index') }}'">
+    <div class="col-md-4 col-lg-2 col-xlg-2 pointer" onclick="location.href='{{ route('admin.booking_request.index') }}?status=all'">
         <div class="card card-hover">
             <div class="box bg-info text-center">
                 <h1 class="font-light text-white">{{ $count_booking_requests }}</h1>
