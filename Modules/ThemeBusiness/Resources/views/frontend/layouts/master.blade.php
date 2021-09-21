@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="page-wrapper">
+    <div class="page-wrapper" style="margin-bottom: 0px!important">
         @include('themebusiness::frontend.layouts.partials.header')
         @yield('main-content')
         @include('themebusiness::frontend.layouts.partials.footer')
@@ -21,4 +21,5 @@
 
     @include('themebusiness::frontend.layouts.partials.scripts')
 </body>
+
 </html>

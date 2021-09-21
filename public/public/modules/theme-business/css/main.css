@@ -4,14 +4,30 @@
 
 /* Testimonial Section CSS */
 .testimonial.testimonial-style-3.custom-testimonial-style-1 .testimonial-author img {
-    max-width: 60px!important;
-    max-height: 50px!important;
+    max-width: 60px !important;
+    max-height: 50px !important;
 }
 
 /* Team Section CSS */
 .owl-carousel .owl-item img {
-    width: auto!important;
+    width: auto !important;
     height: 150px;
+}
+
+#footer.footer-reveal {
+    position: initial !important;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#footer {
+    background: #212529 !important;
+}
+
+#footer .footer-copyright {
+    background: #1c2023 !important;
 }
 
 /* Footer CSS */
