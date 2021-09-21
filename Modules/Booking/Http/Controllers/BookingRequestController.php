@@ -146,7 +146,7 @@ class BookingRequestController extends Controller
             $booking_request = BookingRequest::store($request->all());
 
             if (!empty($booking_request)) {
-                session()->flash('success', 'Your request has been sent to authority. An agent will communicate with you soon.');
+                session()->flash('success', 'Your request has been added. Please provide billing information to confirm.');
                 return redirect()->route('demo.business.booking_request.create.billing', $booking_request->id);
             }
 
@@ -165,25 +165,6 @@ class BookingRequestController extends Controller
     public function create()
     {
         return view('booking::frontend.pages/booking-request');
-    }
-
-    /**
-     * Show the form for creating billing address for the specified resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createBilling($booking_request_id)
-    {
-        $booking_request = BookingRequest::find(intval($booking_request_id));
-
-        if (empty($booking_request)) {
-            session()->flash('error', 'Sorry ! Request could not be found.');
-            return back();
-        }
-
-        $service = $booking_request->service;
-
-        return view('booking::frontend.pages.booking-request-billing', compact('booking_request', 'service'));
     }
 
     /**
