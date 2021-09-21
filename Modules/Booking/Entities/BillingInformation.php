@@ -101,7 +101,11 @@ class BillingInformation extends Model
                 'payment_status'     => 'pending'
             ];
 
-            return BillingInformation::create($processed_data);
+            $billing_information     = BillingInformation::create($processed_data);
+            $booking_request->status = 'pending';
+            $booking_request->save();
+
+            return $billing_information;
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }

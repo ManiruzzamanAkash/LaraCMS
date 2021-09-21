@@ -27,7 +27,8 @@ class BookingRequest extends Model
         'start_date',
         'start_time',
         'message',
-        'expired_at'
+        'expired_at',
+        'status'
     ];
 
     /**
@@ -137,7 +138,8 @@ class BookingRequest extends Model
                 'start_date'            => $data['start_date'],
                 'start_time'            => $data['start_time'],
                 'message'               => $data['message'],
-                'expired_at'            => Carbon::now()->addMinutes(5) // Add 5 minutes later
+                'expired_at'            => Carbon::now()->addMinutes(5), // Add 5 minutes later,
+                'status'                => 'no-billing'
             ];
 
             return BookingRequest::create($processed_data);

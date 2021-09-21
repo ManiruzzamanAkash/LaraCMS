@@ -21,7 +21,7 @@
                         <th>Service Request Date/Time</th>
                         <th>Request Status</th>
                         <th>Payment Status</th>
-                        <th>Paid Amount</th>
+                        <th>Pyable Amount</th>
                         <th width="100">Action</th>
                     </tr>
                 </thead>

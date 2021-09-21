@@ -40,9 +40,8 @@ class BookingRequestController extends Controller
         if (request()->ajax()) {
             $status = empty(request()->status) ? 'pending' : request()->status;
 
-            $booking_requests = BookingRequest::orderBy('id', 'desc')
+            $query = BookingRequest::orderBy('id', 'desc')
                 ->join('billing_information', 'billing_information.booking_request_id', '=', 'booking_requests.id')
-                ->where('status', $status)
                 ->select(
                     'booking_requests.id',
                     'booking_requests.name',
@@ -53,8 +52,13 @@ class BookingRequestController extends Controller
                     'booking_requests.status',
                     'billing_information.payment_status',
                     'billing_information.grand_total'
-                )
-                ->get();
+                );
+
+            if (request()->status !== 'all') {
+                $query->where('status', $status);
+            }
+
+            $booking_requests = $query->get();
 
             $datatable = DataTables::of($booking_requests, $isTrashed)
                 ->addIndexColumn()
@@ -148,7 +152,7 @@ class BookingRequestController extends Controller
             return $datatable->rawColumns($rawColumns)->make(true);
         }
 
-        $count_booking_requests             = BookingRequest::select('id')->count();
+        $count_booking_requests             = BookingRequest::select('id')->where('status', '!=', 'no-billing')->count();
         $count_pending_booking_requests     = BookingRequest::select('id')->where('status', 'pending')->count();
         $count_processing_booking_requests  = BookingRequest::select('id')->where('status', 'processing')->count();
         $count_completed_booking_requests   = BookingRequest::select('id')->where('status', 'completed')->count();
