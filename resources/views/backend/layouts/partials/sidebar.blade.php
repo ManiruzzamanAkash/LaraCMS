@@ -154,17 +154,21 @@
                 @endif
 
                 @if ($user->can('booking_request.view') || $user->can('booking_request.edit') || $user->can('booking_request.delete'))
+                @php
+                    $count_pending_booking_request = \Modules\Booking\Entities\BookingRequest::where('status', 'pending')->count();
+                @endphp
                 <li class="sidebar-item ">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="mdi mdi-application"></i>
                         <span class="hide-menu">Booking Requests </span>
+                        {{ " " }}<span class="badge badge-warning">{{ $count_pending_booking_request }}</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.booking_request.index') || Route::is('admin.booking_request.create') || Route::is('admin.booking_request.edit')) ? 'in' : null }}">
                         @if ($user->can('booking_request.view'))
                         <li class="sidebar-item">
                             <a href="{{ route('admin.booking_request.index') }}" class="sidebar-link {{ (Route::is('admin.booking_request.index') || Route::is('admin.booking_request.edit')) ? 'active' : null }}">
                                 <i class="mdi mdi-view-list"></i>
-                                <span class="hide-menu"> Request List </span>
+                                <span class="hide-menu"> Request List <span class="badge badge-warning">{{ $count_pending_booking_request }}</span> </span>
                             </a>
                         </li>
                         @endif
