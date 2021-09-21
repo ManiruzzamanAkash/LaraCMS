@@ -216,6 +216,10 @@ class AdminsController extends Controller
                 $admin->username = StringHelper::createSlug($request->first_name . $request->last_name, 'Admin', 'username', '');
             }
 
+            if (!is_null($request->avatar)) {
+                $admin->avatar = UploadHelper::upload('avatar', $request->avatar, $request->first_name . '-' . time(), 'public/assets/images/admins');
+            }
+
             $admin->phone_no = $request->phone_no;
             $admin->email = $request->email;
             $admin->password = Hash::make($request->password);

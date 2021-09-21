@@ -10,7 +10,7 @@
         @include('backend.layouts.partials.messages')
         <div class="create-page">
             <form action="{{ route('admin.admins.store') }}" method="POST" data-parsley-validate
-                data-parsley-focus="first">
+                data-parsley-focus="first" enctype="multipart/form-data">
                 @csrf
                 <div class="form-body">
                     <div class="card-body">
