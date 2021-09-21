@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Booking\Entities\BillingInformation;
 use Modules\Booking\Entities\BookingRequest;
 use Modules\Booking\Http\Requests\BookingRequest as BookingFormRequest;
 use Modules\Service\Entities\Service;
@@ -194,9 +195,12 @@ class BookingRequestController extends Controller
             return view('errors.403', compact('message'));
         }
 
-        $booking_request = BookingRequest::find($id);
+        $booking_request  = BookingRequest::find($id);
+        $booking_statuses = BookingRequest::getServiceStatuses();
+        $billing_statuses = BillingInformation::getBillingStatuses();
+        $billing          = $booking_request->billing;
 
-        return view('booking::backend.booking_request.edit', compact('booking_requests'));
+        return view('booking::backend.booking_request.edit', compact('booking_request', 'booking_statuses', 'billing_statuses', 'billing'));
     }
 
     /**
@@ -215,10 +219,25 @@ class BookingRequestController extends Controller
 
         $booking_request = BookingRequest::find($id);
 
-        if (is_null($booking_request)) {
-            session()->flash('error', "The page is not found !");
+        if (empty($booking_request)) {
+            session()->flash('error', "The page is not found.");
             return redirect()->route('admin.booking_request.index');
         }
+
+        // Update booking_request
+        $booking_request->status = $request->booking_status;
+        $booking_request->save();
+
+        // Update billing status
+        $billing_info = $booking_request->billing;
+        if (!empty($billing_info)) {
+            $billing_info->payment_status = $request->billing_status;
+            $billing_info->save();
+        }
+
+        session()->flash('success', "Informations updated successfully.");
+        $redirected_url = route('admin.booking_request.index') . '?status=' . $booking_request->status;
+        return redirect($redirected_url);
     }
 
     /**
@@ -235,18 +254,16 @@ class BookingRequestController extends Controller
         }
 
         $booking_request = BookingRequest::find($id);
-        if (is_null($booking_request)) {
+
+        if (empty($booking_request)) {
             session()->flash('error', "The page is not found !");
-            return redirect()->route('admin.booking_request.trashed');
+            return redirect()->route('admin.booking_request.index');
         }
 
-        $booking_request->status = 'cancelled';
-        $booking_request->deleted_by = auth()->user()->id;
-        $booking_request->status = 0;
-        $booking_request->save();
+        $booking_request->delete();
 
-        session()->flash('success', 'Request has been deleted successfully as trashed !!');
-        return redirect()->route('admin.booking_request.trashed');
+        session()->flash('success', 'Request has been deleted successfully.');
+        return redirect()->route('admin.booking_request.index');
     }
 
     /**
