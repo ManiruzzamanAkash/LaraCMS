@@ -35,7 +35,7 @@ class BookingRequest extends Model
      *
      * @return array
      */
-    public function getServiceStatuses()
+    public static function getServiceStatuses()
     {
         return [
             'pending'    => 'Pending',

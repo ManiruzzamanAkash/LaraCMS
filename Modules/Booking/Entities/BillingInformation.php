@@ -41,7 +41,7 @@ class BillingInformation extends Model
      *
      * @return array
      */
-    public function getBillingStatuses()
+    public static function getBillingStatuses()
     {
         return [
             'pending'   => 'Pending',
