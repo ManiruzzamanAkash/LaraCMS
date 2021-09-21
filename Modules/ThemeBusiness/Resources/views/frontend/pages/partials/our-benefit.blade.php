@@ -9,9 +9,11 @@
                     </div>
                 </div>
                 <h3 class="text-color-secondary font-weight-bold text-transform-none text-8 mb-3 pb-1 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1200" style="animation-delay: 1200ms;">Our Benefits</h3>
-                <p class="mb-4 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400" style="animation-delay: 1400ms;">Cras a elit sit amet leo accumsan volutpat. Suspendisse
+                <p class="mb-4 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400" style="animation-delay: 1400ms;">
+                    Cras a elit sit amet leo accumsan volutpat. Suspendisse
                     hendrerit vehicula leo, vel efficitur felis ultrices non. Integer aliquet ullamcorper dolor,
-                    quis sollicitudin. Integer aliquet ullamcorper dolor, quis sollicitudin.</p>
+                    quis sollicitudin. Integer aliquet ullamcorper dolor, quis sollicitudin.
+                </p>
             </div>
         </div>
         <div class="row align-items-center justify-content-center mb-4">
@@ -116,7 +118,7 @@
                     </div>
                     <div class="position-absolute top-50pct left-50pct transform3dxy-n50" style="left: 25%;">
                         <div data-plugin-float-element="" data-plugin-options="{&#39;startPos&#39;: &#39;top&#39;, &#39;speed&#39;: 0.3, &#39;transition&#39;: true, &#39;transitionDuration&#39;: 1000, &#39;isInsideSVG&#39;: true}" style="top: 0px; transition: transform 1000ms ease-out 0ms; transform: translate3d(0px, -3.39352%, 0px);">
-                            <img src="{{ asset('public/modules/theme-business/images/common/generic-3.jpg') }}" class="img-fluid rounded-circle custom-box-shadow-1 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400" alt="" style="animation-delay: 1400ms;">
+                            <img src="{{ asset('public/modules/theme-business/images/common/our-benefits.jpg') }}" class="img-fluid rounded-circle custom-box-shadow-1 appear-animation animated fadeInUpShorter appear-animation-visible" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400" alt="" style="animation-delay: 1400ms;">
                         </div>
                     </div>
                 </div>
