@@ -27,6 +27,7 @@
 
         <div class="container pb-2 mb-5 mt-5">
             <div class="card card-body p-3">
+                @include('frontend.layouts.partials.messages')
                 @include('booking::frontend.partials.booking-request-billing-form')
             </div>
         </div>
@@ -35,10 +36,9 @@
 
 @section('scripts')
     <script>
-        let selectedHour = 1;
         let totalHour = 1;
-        let bookingRateValue = "{{ $booking_request->booking_rate_value }}";
-        let bookingGstRate = 10; //10%
+        const bookingRateValue = "{{ $booking_request->booking_rate_value }}";
+        const bookingGstRate = "{{ $booking_default_gst }}"; //eg: 10%
         let bookingGstAmount = bookingGstRate * (totalHour * bookingRateValue) / 100;
         let bookingGrandTotal = parseFloat(bookingRateValue) + parseFloat(bookingGstRate);
 

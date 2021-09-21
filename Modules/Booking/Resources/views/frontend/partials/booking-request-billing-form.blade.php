@@ -1,11 +1,12 @@
 @php
 $categories = \Modules\Article\Entities\Category::getCategories();
 $services   = \Modules\Service\Entities\Service::getPageData(['limit' => 20, 'orderBy' => 'asc'])['pages'];
-$hours      =  \Modules\Booking\Entities\BookingRequest::getServiceHours();
+$hours      = \Modules\Booking\Entities\BookingRequest::getServiceHours();
 @endphp
 
-<form class="contact-form custom-form-style-1" action="{{ route('booking.request.store') }}" method="POST"
+<form class="contact-form custom-form-style-1" action="{{ route('booking.request.store.billing', $booking_request->id) }}" method="POST"
     data-parsley-validate>
+    <input type="hidden" name="booking_request_id" value="{{  $booking_request->id }}">
     @csrf
     <div class="row">
         <div class="col-md-8 col-lg-8 col-sm-12">
