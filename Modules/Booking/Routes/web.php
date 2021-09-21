@@ -11,10 +11,12 @@
 |
 */
 
+use Modules\Booking\Http\Controllers\BillingInformationController;
 use Modules\Booking\Http\Controllers\BookingRequestController;
 
 Route::prefix('booking-request')->group(function () {
     Route::post('store', [BookingRequestController::class, 'store'])->name('booking.request.store');
+    Route::post('{booking_request_id}/billing-information', [BillingInformationController::class, 'store'])->name('booking.request.store.billing');
 });
 
 Route::prefix('admin/booking-request')->group(function () {
