@@ -5,7 +5,7 @@
                 @if (Route::is('admin.booking_request.index'))
                     Booking Requests
                 @elseif(Route::is('admin.booking_request.edit'))
-                    Edit Request <span class="badge badge-info">{{ $booking_request->name }}</span>
+                    Manage Request <span class="badge badge-info">{{ $booking_request->name }}</span>
                 @endif
             </h4>
         </div>

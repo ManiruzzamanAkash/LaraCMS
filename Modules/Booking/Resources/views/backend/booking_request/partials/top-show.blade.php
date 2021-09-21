@@ -43,7 +43,7 @@
         <div class="card card-hover">
             <div class="box bg-danger text-center">
                 <h1 class="font-light text-white">{{ $count_cancelled_booking_requests }}</h1>
-                <h6 class="text-white">cancelled Requests</h6>
+                <h6 class="text-white">Cancelled Requests</h6>
             </div>
         </div>
     </div>
