@@ -11,7 +11,12 @@ Request a Service | {{ config('app.name') }}
         <div class="container my-3">
             <div class="row">
                 <div class="col-md-12 align-self-center p-static order-2 text-center">
-                    <h1 class="font-weight-bold text-10">Booking Request</h1>
+                    <h1 class="font-weight-bold text-10">
+                        Booking Request
+                        @if (!empty($service))
+                            - {{ $service->title }}
+                        @endif
+                    </h1>
                 </div>
                 <div class="col-md-12 align-self-center order-1">
                     <ul class="breadcrumb breadcrumb-light d-block text-center">

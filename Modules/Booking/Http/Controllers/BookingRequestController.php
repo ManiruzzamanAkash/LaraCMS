@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Booking\Entities\BookingRequest;
 use Modules\Booking\Http\Requests\BookingRequest as BookingFormRequest;
+use Modules\Service\Entities\Service;
 use Yajra\DataTables\Facades\DataTables;
 
 class BookingRequestController extends Controller
@@ -164,7 +165,20 @@ class BookingRequestController extends Controller
      */
     public function create()
     {
-        return view('booking::frontend.pages/booking-request');
+        $service_category_id = null;
+        $service_id          = null;
+        $service     = null;
+
+        if (!empty(request()->id)) {
+            $id = intval(request()->id);
+            $service = Service::where('id', $id)->first();
+            if (!empty($service)) {
+                $service_category_id = $service->category_id;
+                $service_id = $service->id;
+            }
+        }
+
+        return view('booking::frontend.pages.booking-request', compact('service_category_id', 'service_id', 'service'));
     }
 
     /**
