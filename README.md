@@ -1,6 +1,6 @@
 ## Lara CMS
 
-Lara CMS is a Great **CMS Application** built in Laravel & a Great **Starter Kit** for big web applications.
+Lara CMS is a Great **CMS Application** built in Laravel & a Great **Starter Kit** for big web applications using `Laravel 9.x`.
 
 It's an application to minimize your problems while creating a new web application with all the common features using Laravel and a JavaScript Framework/Library (`React JS`)
 
@@ -10,8 +10,10 @@ It's an application to minimize your problems while creating a new web applicati
 
 **Technology Used:**
 
-1. Laravel `8.49` (Will upgrade if needs)
-1. PHP `7.4 | 8.0`
+1. Laravel `9.x`
+1. PHP `8.0`
+1. JavaScript
+1. JQuery
 1. React JS
 1. Visual Studio Code
 
@@ -24,7 +26,12 @@ It's an application to minimize your problems while creating a new web applicati
 git clone https://github.com/ManiruzzamanAkash/LaraCMS.git
 ```
 
-**2. Install Composer**
+**2. Go to that folder**
+```bash
+cd LaraCMS
+```
+
+**3. Install Composer**
 ```bash
 composer install
 
@@ -68,7 +75,7 @@ Password: 123456
 
 ---
 
-> Note: **It's still not stable yet**. I'm working on it. May be needs this **August 2021**. I'll implement modular development system and many more advanced stuff here. Just wait & give it a **Star** to keep tracked with us. Thank you to staying with **Lara CMS**...
+You can use this project to any of your advanced project for initial setups. Give it a **Star** to keep tracked with us. Thank you to staying with **Lara CMS**...
 
 ## Application Features `Admin Panel`
 
@@ -189,6 +196,5 @@ Password: 123456
 ![Article / Page Create](https://i.ibb.co/b5TWHKV/Lara-CMS-Create-Article.png)
 
 
-
 ## Contribution
-It's not open yet for contribution. I'll open it hope after this July, 2021 after implementing all of the advanced, faster & scalable architecture of Laravel.
+It's open for contribution. You can fork the repo and create a Pull Request with your desired feature or issue. I'll merge them if they're all passed the test-cases.
