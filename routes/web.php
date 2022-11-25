@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\Modules\Contact\ContactsControllerBackend;
 use App\Http\Controllers\Backend\Modules\Page\PagesController;
 use App\Http\Controllers\Backend\Modules\Settings\CacheController;
 use App\Http\Controllers\Backend\Modules\Settings\LanguagesController;
+use App\Http\Controllers\Backend\Modules\Settings\SettingsController;
 use App\Http\Controllers\Frontend\FrontPagesController;
 
 /*
@@ -90,6 +91,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
      * Settings Management Routes
      */
     Route::group(['prefix' => 'settings'], function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
         Route::resource('languages', LanguagesController::class);
     });
 
