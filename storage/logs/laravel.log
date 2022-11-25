@@ -1,0 +1,24 @@
+[2022-11-25 15:22:09] local.ERROR: Cannot declare class App\Settings\GeneralSettings, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Settings\\GeneralSettings, because the name is already in use at /Applications/MAMP/htdocs/LaraCMS/app/Settings/ContactSettings.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2022-11-25 15:22:09] local.ERROR: Cannot declare class App\Settings\GeneralSettings, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Settings\\GeneralSettings, because the name is already in use at /Applications/MAMP/htdocs/LaraCMS/app/Settings/ContactSettings.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2022-11-25 15:23:09] local.ERROR: Cannot declare class App\Settings\GeneralSettings, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Settings\\GeneralSettings, because the name is already in use at /Applications/MAMP/htdocs/LaraCMS/app/Settings/ContactSettings.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2022-11-25 15:23:09] local.ERROR: Cannot declare class App\Settings\GeneralSettings, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Settings\\GeneralSettings, because the name is already in use at /Applications/MAMP/htdocs/LaraCMS/app/Settings/ContactSettings.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2022-11-25 15:24:09] local.ERROR: Cannot declare class App\Settings\GeneralSettings, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Settings\\GeneralSettings, because the name is already in use at /Applications/MAMP/htdocs/LaraCMS/app/Settings/ContactSettings.php:7)
+[stacktrace]
+#0 {main}
+"} 
+[2022-11-25 15:24:09] local.ERROR: Cannot declare class App\Settings\GeneralSettings, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Settings\\GeneralSettings, because the name is already in use at /Applications/MAMP/htdocs/LaraCMS/app/Settings/ContactSettings.php:7)
+[stacktrace]
+#0 {main}
+"} 
