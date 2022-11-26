@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Blog;
+namespace App\Http\Controllers\Backend;
 
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Blog;
@@ -16,7 +15,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class BlogsController extends Controller
 {
-
     public $user;
 
     public function __construct()

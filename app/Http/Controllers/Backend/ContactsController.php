@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Contact;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
-class ContactsControllerBackend extends Controller
+class ContactsController extends Controller
 {
-
     public $user;
 
     public function __construct()

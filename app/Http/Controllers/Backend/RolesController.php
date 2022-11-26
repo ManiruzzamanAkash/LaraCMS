@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
@@ -13,7 +13,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class RolesController extends Controller
 {
-
     public $user;
 
     public function __construct()

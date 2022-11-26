@@ -1,24 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\Modules\Dashboard\DashboardsController;
-use App\Http\Controllers\Backend\Auth\LoginController;
-use App\Http\Controllers\Backend\Auth\ResetPasswordController;
-use App\Http\Controllers\Backend\Auth\ForgotPasswordController;
-use App\Http\Controllers\Backend\Modules\Admin\AdminsController;
-use App\Http\Controllers\Backend\Modules\Admin\RolesController;
-use App\Http\Controllers\Backend\Modules\Category\CategoriesController;
-use App\Http\Controllers\Backend\Modules\Blog\BlogsController;
-use App\Http\Controllers\Backend\Modules\Contact\ContactsControllerBackend;
-use App\Http\Controllers\Backend\Modules\Page\PagesController;
-use App\Http\Controllers\Backend\Modules\Settings\CacheController;
-use App\Http\Controllers\Backend\Modules\Settings\LanguagesController;
-use App\Http\Controllers\Backend\Modules\Settings\SettingsController;
 use App\Http\Controllers\Frontend\FrontPagesController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes - Frontend routes.
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -26,88 +14,5 @@ use App\Http\Controllers\Frontend\FrontPagesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-/*
-|--------------------------------------------------------------------------
-| Backend Routes
-|--------------------------------------------------------------------------
-|
-| Admin Panel Route List
-|
-*/
-
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    // Auth::routes();
-
-    Route::get('/', [DashboardsController::class, 'index'])->name('index');
-
-    // Login Routes
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login/submit', [LoginController::class, 'login'])->name('login.submit');
-    Route::post('/logout/submit', [LoginController::class, 'logout'])->name('logout');
-
-    // Reset Password Routes
-    Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-    Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-    /**
-     * Admin Management Routes
-     */
-    Route::group(['prefix' => ''], function () {
-        Route::resource('admins', AdminsController::class);
-        Route::get('admins/trashed/view', [AdminsController::class, 'trashed'])->name('admins.trashed');
-        Route::get('profile/edit', [AdminsController::class, 'editProfile'])->name('admins.profile.edit');
-        Route::put('profile/update', [AdminsController::class, 'updateProfile'])->name('admins.profile.update');
-        Route::delete('admins/trashed/destroy/{id}', [AdminsController::class, 'destroyTrash'])->name('admins.trashed.destroy');
-        Route::put('admins/trashed/revert/{id}', [AdminsController::class, 'revertFromTrash'])->name('admins.trashed.revert');
-    });
-
-    /**
-     * Role & Permission Management Routes
-     */
-    Route::group(['prefix' => ''], function () {
-        Route::resource('roles', RolesController::class);
-    });
-
-    /**
-     * Blog Management Routes
-     */
-    Route::group(['prefix' => ''], function () {
-        Route::resource('blogs', BlogsController::class);
-        Route::get('blogs/trashed/view', [BlogsController::class, 'trashed'])->name('blogs.trashed');
-        Route::delete('blogs/trashed/destroy/{id}', [BlogsController::class, 'destroyTrash'])->name('blogs.trashed.destroy');
-        Route::put('blogs/trashed/revert/{id}', [BlogsController::class, 'revertFromTrash'])->name('blogs.trashed.revert');
-    });
-
-    /**
-     * Contact Routes
-     */
-    Route::group(['prefix' => ''], function () {
-        Route::resource('contacts', ContactsControllerBackend::class);
-    });
-
-    /**
-     * Settings Management Routes
-     */
-    Route::group(['prefix' => 'settings'], function () {
-        Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
-        Route::put('/update', [SettingsController::class, 'update'])->name('settings.update');
-        Route::resource('languages', LanguagesController::class);
-    });
-
-});
-
 Auth::routes();
-
-/*
-|--------------------------------------------------------------------------
-| Frontend Routes
-|--------------------------------------------------------------------------
-|
-| Fontend Website Route List
-|
-*/
-Route::get('reset-cache', [CacheController::class, 'reset_cache']);
-
 Route::get( '/', [ FrontPagesController::class, 'index' ] )->name( 'index' );

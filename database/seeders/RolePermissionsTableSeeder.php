@@ -135,6 +135,11 @@ class RolePermissionsTableSeeder extends Seeder
                 'email_message.edit',
             ],
 
+            'contacts' => [
+                'contact.view',
+                'contact.create',
+            ],
+
             'module' => [
                 'module.view',
                 'module.create',
@@ -147,9 +152,7 @@ class RolePermissionsTableSeeder extends Seeder
         // Assign group wise permissions
         foreach ($permissionGroups as $groupKey => $permissionGroup) {
             foreach ($permissionGroup as $permissionName) {
-
                 $permission = Permission::where('guard_name', 'admin')->where('group_name', $groupKey)->where('name', $permissionName)->first();
-                
                 if (empty($permission)) {
                     $permission = Permission::create([
                         'guard_name' => 'admin',

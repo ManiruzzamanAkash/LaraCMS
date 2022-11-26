@@ -1,25 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Settings;
+namespace App\Http\Controllers\Backend;
 
-use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Country;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Models\Language;
-use App\Models\LanguagePreferred;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Yajra\DataTables\Facades\DataTables;
 
 class LanguagesController extends Controller
 {
-
     public $user;
 
     public function __construct()
@@ -123,7 +117,7 @@ class LanguagesController extends Controller
             }
 
             if (!is_null($request->banner)) {
-                $banner = UploadHelper::upload('banner', $request->banner, $request->banner_caption. '-b-' . time(), 'public/img/flags/');
+                $banner = UploadHelper::upload('banner', $request->banner, $request->banner_caption . '-b-' . time(), 'public/img/flags/');
             }
 
             $language = Language::create([
@@ -179,7 +173,7 @@ class LanguagesController extends Controller
 
         $languages           = Language::all();
         $language            = Language::find($id);
-        $countries           = Country ::get();
+        $countries           = Country::get();
 
         return view('backend.pages.languages.edit', compact('language', 'languages', 'countries'));
     }
@@ -216,13 +210,13 @@ class LanguagesController extends Controller
 
             if (!is_null($request->flag)) {
                 $flag = UploadHelper::update('flag', $request->flag, $request->name . '-' . time() . '-flag', 'public/img/flags/', $language->flag);
-            }else {
+            } else {
                 $flag = $language->flag;
             }
 
             if (!is_null($request->banner)) {
-                $banner = UploadHelper::update('banner', $request->banner, $request->banner_caption. '-b-' . time(), 'public/img/flags/', $language->banner);
-            }else {
+                $banner = UploadHelper::update('banner', $request->banner, $request->banner_caption . '-b-' . time(), 'public/img/flags/', $language->banner);
+            } else {
                 $banner = $language->banner;
             }
 
@@ -247,5 +241,4 @@ class LanguagesController extends Controller
             return back();
         }
     }
-
 }
