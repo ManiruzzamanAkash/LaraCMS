@@ -241,6 +241,12 @@
                                 <span class="hide-menu"> Languages </span>
                             </a>
                         </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('admin.settings.index') }}" class="sidebar-link {{ ( Route::is('admin.settings.index')) ? 'active' : null }}">
+                                <i class="mdi mdi-settings"></i>
+                                <span class="hide-menu"> Settings </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

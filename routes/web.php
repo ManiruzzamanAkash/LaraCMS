@@ -92,6 +92,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
      */
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', [SettingsController::class, 'index'])->name('settings.index');
+        Route::put('/update', [SettingsController::class, 'update'])->name('settings.update');
         Route::resource('languages', LanguagesController::class);
     });
 

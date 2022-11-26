@@ -6,23 +6,23 @@ use Spatie\LaravelSettings\Settings;
 
 class ContactSettings extends Settings
 {
-    public string $contact_no;
+    public ?string $contact_no;
 
-    public string $phone;
+    public ?string $phone;
 
-    public string $email_primary;
+    public ?string $email_primary;
 
-    public string $email_secondary;
+    public ?string $email_secondary;
 
-    public string $address;
+    public ?string $address;
 
-    public string $working_day_hours;
+    public ?string $working_day_hours;
 
-    public float $map_lat;
+    public ?string $map_lat;
 
-    public float $map_long;
+    public ?string $map_long;
 
-    public float $map_zoom;
+    public ?string $map_zoom;
 
     public static function group(): string
     {

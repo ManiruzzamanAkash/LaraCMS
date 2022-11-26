@@ -11,5 +11,6 @@ class CreateSocialSettings extends SettingsMigration
         $this->migrator->add('social.youtube', 'https://youtube.com/');
         $this->migrator->add('social.linkedin', 'https://linkedin.com/');
         $this->migrator->add('social.pinterest', 'https://pinterest.com/');
+        $this->migrator->add('social.instagram', 'https://instagram.com/');
     }
 }
