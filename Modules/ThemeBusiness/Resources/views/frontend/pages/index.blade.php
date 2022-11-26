@@ -5,7 +5,6 @@
 @endsection
 
 @section('main-content')
-
     <div role="main" class="main">
         @include('themebusiness::frontend.pages.partials.home-banner')
 
@@ -42,9 +41,9 @@
                                 class="d-flex align-items-center justify-content-end justify-content-lg-end flex-column flex-lg-row font-weight-medium text-4 text-lg-3 text-xl-4">
                                 SCHEDULE AN APPOINTMENT:
                                 <strong class="text-7 mt-2 mt-lg-0 ms-lg-3">
-                                    <a href="tel:+61297937174"
+                                    <a href="tel:{{ $settings->contact->contact_no }}"
                                         class="text-color-secondary text-color-hover-primary text-decoration-none">
-                                        +61 297937174
+                                        {{ $settings->contact->contact_no }}
                                     </a>
                                 </strong>
                             </span>
@@ -54,8 +53,9 @@
                                 class="d-flex align-items-center justify-content-end justify-content-lg-end flex-column flex-lg-row font-weight-medium text-4 text-lg-3 text-xl-4">
                                 SEND AN EMAIL:
                                 <strong class="text-3 ms-lg-3">
-                                    <a href="mailto:mail@domain.com"
-                                        class="text-color-tertiary text-color-hover-primary text-decoration-underline">jahangir70bd@gmail.com
+                                    <a href="mailto:{{ $settings->contact->email_primary }}"
+                                        class="text-color-tertiary text-color-hover-primary text-decoration-underline">
+                                        {{ $settings->contact->email_primary }}
                                     </a>
                                 </strong>
                             </span>
@@ -171,8 +171,8 @@
 
         <section class="section section-with-shape-divider border-0 bg-transparent m-0">
             <div class="shape-divider shape-divider-reverse-x" style="height: 102px;">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                    y="0px" viewBox="0 0 1920 102" preserveAspectRatio="xMinYMin">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" viewBox="0 0 1920 102" preserveAspectRatio="xMinYMin">
                     <path fill="#F7F7F7"
                         d="M1895,78c-56.71-6.03-113.75-12.1-167-17c-75.42-6.94-133.81-10.66-171-13c-62.1-3.91-108.85-5.97-155-8
                                             c-35.96-1.58-78.06-3.42-133-5c-59.81-1.72-103.18-2.23-172-3c-92.17-1.03-154.41-1.01-169-1c-69.05,0.05-115.16,0.67-137,1
@@ -183,8 +183,8 @@
                 </svg>
             </div>
             <div class="shape-divider shape-divider-bottom" style="height: 102px;">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                    y="0px" viewBox="0 0 1920 102" preserveAspectRatio="xMinYMin">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" viewBox="0 0 1920 102" preserveAspectRatio="xMinYMin">
                     <path fill="#F7F7F7"
                         d="M1895,78c-56.71-6.03-113.75-12.1-167-17c-75.42-6.94-133.81-10.66-171-13c-62.1-3.91-108.85-5.97-155-8
                                             c-35.96-1.58-78.06-3.42-133-5c-59.81-1.72-103.18-2.23-172-3c-92.17-1.03-154.41-1.01-169-1c-69.05,0.05-115.16,0.67-137,1
@@ -266,8 +266,8 @@
 
         <section class="section section-with-shape-divider bg-tertiary border-0 m-0">
             <div class="shape-divider" style="height: 116px;">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                    y="0px" viewBox="0 0 1920 116" preserveAspectRatio="xMinYMin">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" viewBox="0 0 1920 116" preserveAspectRatio="xMinYMin">
                     <path class="custom-svg-fill-color-tertiary-darken"
                         d="M0,24c2.86,0.42,7.41,1.1,13,2c6.13,0.98,10.67,1.77,12,2c11.67,2.01,42.24,7.05,68,11
                                             c7.79,1.2,22.72,3.48,41,6c20.75,2.86,38.83,5.06,74,9c41.19,4.61,62.09,6.95,93,10c57.4,5.66,101.17,9.03,114,10
@@ -283,8 +283,8 @@
                 </svg>
             </div>
             <div class="shape-divider shape-divider-bottom" style="height: 102px;">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                    y="0px" viewBox="0 0 1920 102" preserveAspectRatio="xMinYMin">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px" y="0px" viewBox="0 0 1920 102" preserveAspectRatio="xMinYMin">
                     <path fill="#F7F7F7"
                         d="M1895,78c-56.71-6.03-113.75-12.1-167-17c-75.42-6.94-133.81-10.66-171-13c-62.1-3.91-108.85-5.97-155-8
                                             c-35.96-1.58-78.06-3.42-133-5c-59.81-1.72-103.18-2.23-172-3c-92.17-1.03-154.41-1.01-169-1c-69.05,0.05-115.16,0.67-137,1
@@ -298,7 +298,8 @@
                 <div class="row mt-5 mb-5">
                     <div class="col-lg-4 pe-lg-0 mb-4 mb-lg-0">
                         <h2 class="text-color-light font-weight-bold line-height-6 text-8 mb-3">Our Happy Clients</h2>
-                        <p class="text-color-light opacity-7 mb-0">We value our customer needs and provide great service and
+                        <p class="text-color-light opacity-7 mb-0">We value our customer needs and provide great service
+                            and
                             they are more than happy to stay with us...</p>
                     </div>
                     <div class="col-lg-8 ps-lg-4">
@@ -362,9 +363,8 @@
                             <div class="owl-nav disabled"><button type="button" role="presentation"
                                     class="owl-prev"></button><button type="button" role="presentation"
                                     class="owl-next"></button></div>
-                            <div class="owl-dots"><button role="button"
-                                    class="owl-dot"><span></span></button><button role="button"
-                                    class="owl-dot"><span></span></button><button role="button"
+                            <div class="owl-dots"><button role="button" class="owl-dot"><span></span></button><button
+                                    role="button" class="owl-dot"><span></span></button><button role="button"
                                     class="owl-dot"><span></span></button><button role="button"
                                     class="owl-dot active"><span></span></button></div>
                         </div>
@@ -573,6 +573,4 @@
         </section>
 
     </div>
-
-
 @endsection

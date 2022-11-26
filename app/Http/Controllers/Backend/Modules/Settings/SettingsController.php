@@ -39,11 +39,7 @@ class SettingsController extends Controller
             return abort(403, 'You are not allowed to access this page.');
         }
 
-        return view('backend.pages.settings.edit', [
-            'general' => $this->general,
-            'contact' => $this->contact,
-            'social' => $this->social,
-        ]);
+        return view('backend.pages.settings.edit');
     }
 
     public function update(Request $request)
@@ -58,11 +54,11 @@ class SettingsController extends Controller
             // General settings update.
             $this->general->name = $request->name;
             if (!is_null($request->logo)) {
-                $this->general->logo = UploadHelper::update('logo', $request->logo, 'logo', 'public/assets/backend/images/logo', $this->general->logo);
+                $this->general->logo = UploadHelper::update('logo', $request->logo, 'logo', 'public/assets/images/logo', $this->general->logo);
             }
 
             if (!is_null($request->favicon)) {
-                $this->general->favicon = UploadHelper::update('favicon', $request->favicon, 'favicon', 'public/assets/backend/images/logo', $this->general->favicon);
+                $this->general->favicon = UploadHelper::update('favicon', $request->favicon, 'favicon', 'public/assets/images/logo', $this->general->favicon);
             }
 
             $this->general->description      = $request->description;

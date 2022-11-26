@@ -6,15 +6,7 @@
               <div class="col-md-4 col-lg-3 mb-4 mb-lg-0">
                   <h4 class="font-weight-bold ls-0">Our Address</h4>
                   <ul class="list list-unstyled mb-0">
-                      <li class="mb-1">
-                          12345 Blvd.
-                      </li>
-                      <li class="mb-1">
-                          Suite 1500
-                      </li>
-                      <li class="mb-0">
-                          Sydney, Australia
-                      </li>
+                      {!! $settings->contact->address !!}
                   </ul>
               </div>
               <div class="col-md-4 col-lg-3 mb-4 mb-lg-0">
@@ -30,7 +22,6 @@
                                       .st0 {
                                           fill: #333333;
                                       }
-
                                   </style>
                                   <g id="Layer_1"></g>
                                   <g id="Layer_2">
@@ -51,9 +42,9 @@
                       </div>
                       <div class="feature-box-info ps-2">
                           <p class="text-uppercase font-weight-semibold line-height-1 text-2 pb-0 mb-0">CALL US NOW</p>
-                          <a href="tel:+61297937174"
+                          <a href="tel:{{ $settings->contact->contact_no }}"
                               class="text-uppercase text-color-light text-color-hover-secondary text-decoration-none text-5 font-weight-bold pb-0">
-                              +61 297937174
+                              {{ $settings->contact->contact_no }}
                           </a>
                       </div>
                   </div>
@@ -67,11 +58,11 @@
                   @endphp
                   <ul class="list-unstyled mb-0">
                       @foreach ($services as $service)
-                        <li class="mb-1">
-                            <a href="{{ route('demo.business.service.show', $service->slug) }}">
-                                {{ $service->title }}
-                            </a>
-                        </li>
+                          <li class="mb-1">
+                              <a href="{{ route('demo.business.service.show', $service->slug) }}">
+                                  {{ $service->title }}
+                              </a>
+                          </li>
                       @endforeach
                   </ul>
                   <a href="{{ route('demo.business.service') }}"
@@ -91,15 +82,36 @@
               <div class="col-md-4 col-lg-2">
                   <h4 class="font-weight-bold ls-0">Follow Us</h4>
                   <ul class="social-icons social-icons-clean social-icons-medium">
-                      <li>
-                          <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                      </li>
-                      <li>
-                          <a href="https://www.twitter.com/"><i class="fab fa-twitter"></i></a>
-                      </li>
-                      <li>
-                          <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                      </li>
+                      @if ($settings->social->instagram)
+                          <li>
+                              <a href="{{ $settings->social->instagram }}"><i class="fab fa-instagram"></i></a>
+                          </li>
+                      @endif
+                      @if ($settings->social->twitter)
+                          <li>
+                              <a href="{{ $settings->social->twitter }}"><i class="fab fa-twitter"></i></a>
+                          </li>
+                      @endif
+                      @if ($settings->social->facebook)
+                          <li>
+                              <a href="{{ $settings->social->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                          </li>
+                      @endif
+                      @if ($settings->social->linkedin)
+                          <li>
+                              <a href="{{ $settings->social->linkedin }}"><i class="fab fa-linkedin"></i></a>
+                          </li>
+                      @endif
+                      @if ($settings->social->pinterest)
+                          <li>
+                              <a href="{{ $settings->social->pinterest }}"><i class="fab fa-pinterest"></i></a>
+                          </li>
+                      @endif
+                      @if ($settings->social->youtube)
+                          <li>
+                              <a href="{{ $settings->social->youtube }}"><i class="fab fa-youtube"></i></a>
+                          </li>
+                      @endif
                   </ul>
                   <div class="mt-3">
                       <h4 class="font-weight-bold ls-0">We Accept</h4>
@@ -119,7 +131,8 @@
               </div>
               <div class="row py-4 mt-2">
                   <div class="col-lg-6 text-center text-lg-end">
-                      <p class="text-3 mb-0">© {{ config('app.name') }} {{ date('yy') }}. All Rights Reserved
+                      <p class="text-3 mb-0">
+                          {!! $settings->general->copyright_text !!}
                       </p>
                   </div>
               </div>
