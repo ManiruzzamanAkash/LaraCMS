@@ -11,7 +11,7 @@
   <!-- Page Content -->
   <div class="main-header">
     <div class="container">
-        <h1 class="display-4">Welcome to Lara CMS</h1>
+        <h1 class="display-4">Welcome to {{ $settings->general->name }}</h1>
         <p class="lead">
             A Great Customized admin panel built with Laravel...
         </p>
