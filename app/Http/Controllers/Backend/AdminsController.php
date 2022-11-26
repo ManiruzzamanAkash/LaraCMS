@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Admin;
+namespace App\Http\Controllers\Backend;
 
 use App\Helpers\StringHelper;
 use App\Helpers\UploadHelper;

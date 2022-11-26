@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Modules\Dashboard;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
