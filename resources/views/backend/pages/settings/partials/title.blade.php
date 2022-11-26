@@ -1,0 +1,1 @@
+Settings | Admin Panel - {{ config('app.name') }}
