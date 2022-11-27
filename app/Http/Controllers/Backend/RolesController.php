@@ -22,7 +22,7 @@ class RolesController extends Controller
             return $next($request);
         });
     }
-
+    // INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at`, `updated_at`) VALUES (NULL, 'contact.view', 'admin', 'contact', NOW(), NOW()); 
     /**
      * Display a listing of the resource.
      *
