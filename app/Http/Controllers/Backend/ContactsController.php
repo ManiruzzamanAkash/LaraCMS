@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -26,21 +27,24 @@ class ContactsController extends Controller
      */
     public function index($isTrashed = false)
     {
-
-        if ( is_null($this->user) || ! $this->user->can('contact.view') ) {
+        if (is_null($this->user) || !$this->user->can('contact.view')) {
             $message = 'You are not allowed to access this page !';
             return view('errors.403', compact('message'));
         }
 
-        if (request()->ajax()) {
-            $contacts = Contact::orderBy('id', 'desc')->get();
+        $query = Contact::orderBy('status', 'asc')
+            ->orderBy('id', 'desc');
 
-            $datatable = DataTables::of($contacts, $isTrashed)
+        if (request()->ajax()) {
+            $contacts = $query->get();
+
+            $contactsDataTable = DataTables::of($contacts, $isTrashed)
                 ->addIndexColumn()
                 ->addColumn(
                     'action',
                     function ($row) use ($isTrashed) {
-                        return "";
+                        $html = '<a class="btn waves-effect waves-light btn-info btn-sm btn-circle" title="View Contact Details" href="' . route('admin.contacts.show', $row->id) . '"><i class="fa fa-eye"></i></a>';
+                        return $html;
                     }
                 )
 
@@ -51,12 +55,25 @@ class ContactsController extends Controller
                         return '<span class="badge badge-warning">Not Viewed</span>';
                     }
                 });
-            $rawColumns = ['action', 'name', 'email', 'phone', 'country', 'company', 'subject', 'message', 'status'];
-            return $datatable->rawColumns($rawColumns)
+
+            $rawColumns = ['action', 'email', 'message', 'status'];
+            return $contactsDataTable->rawColumns($rawColumns)
                 ->make(true);
         }
 
-        $count_contacts = Contact::count();
-       return view('backend.pages.contacts.index', compact('count_contacts'));
+        return view('backend.pages.contacts.index', [
+            'total_messages' => $query->count()
+        ]);
+    }
+
+    public function show(Contact $contact): Renderable
+    {
+        // Make status as viewed.
+        $contact->status = 1;
+        $contact->admin_id = $this->user->id;
+        $contact->save();
+
+        // Show contact.
+        return view('backend.pages.contacts.show', compact('contact'));
     }
 }

@@ -210,10 +210,10 @@
                             <i class="mdi mdi-email"></i>
                             <span class="hide-menu">Contact Message </span>
                         </a>
-                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.contacts.index') || Route::is('admin.contacts.create') || Route::is('admin.contacts.edit')) ? 'in' : null }}">
+                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.contacts.index') || Route::is('admin.contacts.show')) ? 'in' : null }}">
                             @if ($user->can('contact.view'))
                                 <li class="sidebar-item">
-                                    <a href="{{ route('admin.contacts.index') }}" class="sidebar-link {{ (Route::is('admin.contacts.index') || Route::is('admin.blogs.edit')) ? 'active' : null }}">
+                                    <a href="{{ route('admin.contacts.index') }}" class="sidebar-link {{ (Route::is('admin.contacts.index') || Route::is('admin.contacts.show')) ? 'active' : null }}">
                                         <i class="mdi mdi-email"></i>
                                         <span class="hide-menu"> Message List </span>
                                     </a>

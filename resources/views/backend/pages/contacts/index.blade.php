@@ -17,12 +17,12 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
-                        <th>Country</th>
-                        <th>Company</th>
+                        {{-- <th>Country</th> --}}
+                        {{-- <th>Company</th> --}}
                         <th>Subject</th>
                         <th>Message</th>
                         <th>Status</th>
-                        <!-- <th width="100">Action</th> -->
+                        <th width="100">Action</th>
                     </tr>
                 </thead>
             </table>
@@ -47,12 +47,12 @@
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
             {data: 'phone', name: 'phone'},
-            {data: 'country', name: 'country'},
-            {data: 'company', name: 'company'},
+            // {data: 'country', name: 'country'},
+            // {data: 'company', name: 'company'},
             {data: 'subject', name: 'subject'},
             {data: 'message', name: 'message'},
             {data: 'status', name: 'status'},
-            // {data: 'action', name: 'action'}
+            {data: 'action', name: 'action'}
         ]
     });
     </script>

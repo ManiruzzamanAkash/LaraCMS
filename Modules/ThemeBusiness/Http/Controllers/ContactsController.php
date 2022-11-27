@@ -13,12 +13,23 @@ use Modules\ThemeBusiness\Http\Requests\ContactRequest;
 
 class ContactsController extends Controller
 {
+    /**
+     * Contact us page.
+     *
+     * @return Renderable
+     */
     public function index(): Renderable
     {
         return view('themebusiness::frontend.pages.contact');
     }
 
-    public function store(ContactRequest $request)
+    /**
+     * Store contact information and send an email to admin.
+     *
+     * @param ContactRequest $request
+     * @return void
+     */
+    public function store(ContactRequest $request): \Illuminate\Http\RedirectResponse
     {
         $contact          = new Contact();
         $contact->name    = $request->name;

@@ -4,6 +4,8 @@
             <h4 class="page-title">
                 @if (Route::is('admin.contacts.index'))
                     Contact List
+                @elseif (Route::is('admin.contacts.show'))
+                    View Message
                 @endif
             </h4>
         </div>
@@ -14,6 +16,8 @@
                         <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
                         @if (Route::is('admin.contacts.index'))
                             <li class="breadcrumb-item active" aria-current="page">Contact List</li>
+                        @elseif (Route::is('admin.contacts.show'))
+                            <li class="breadcrumb-item active" aria-current="page">View contact</li>
                         @endif
                     </ol>
                 </nav>
