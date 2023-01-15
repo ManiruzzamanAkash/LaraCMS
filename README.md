@@ -136,8 +136,8 @@ You can use this project to any of your advanced project for initial setups. Giv
 
 > **Website Settings**
 
-- [ ] Website Information System Management
-  - [ ] Edit Settings
+- [x] Website Information System Management
+  - [x] Edit Settings
 - [ ] Slider Management
   - [ ] Create Slider
   - [ ] Edit Slider
