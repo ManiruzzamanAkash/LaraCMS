@@ -1,3 +1,22 @@
+## 🚨 Project Deprecated – Use Lara Dashboard Instead
+
+> **Note:** This repository (LaraCMS) is no longer actively maintained.
+>
+> We’ve built a far more powerful and modular solution called **[Lara Dashboard](https://github.com/laradashboard/laradashboard)** — a complete CMS and admin panel built on Laravel (7.x - 12.x), Tailwind CSS, and fully modular architecture.
+
+### ✅ Why Switch to Lara Dashboard?
+
+* Modern UI with **Tailwind CSS** & **Dark/Light Mode**
+* Fully **modular system** – plug & play modules
+* Built-in management for **Users, Roles, Permissions**
+* **Settings, Translations, Logs, Monitoring**
+* **Charts, Tables, Forms**, and many more components
+* Actively maintained and continuously improved
+
+➡️ **Start using it here:**
+**⚡ [Lara Dashboard – CMS by Laravel](https://github.com/laradashboard/laradashboard)**
+
+
 ## Lara CMS
 
 Lara CMS is a Great **CMS Application** built in Laravel & a Great **Starter Kit** for big web applications using `Laravel 9.x`.
